@@ -1,78 +1,122 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
+import Icon from '../components/Icon.astro';
 
 const PRECO = 'R$ 67';
 ---
 
 <Layout>
   <main class="overflow-x-hidden">
-    <!-- ============================================================= -->
-    <!-- BLOCO 1 — OFERTA / HERO (sem botão de checkout)                -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 1 · HERO / OFERTA (sem botão de checkout — só promessa + imagem)       -->
+    <!-- ===================================================================== -->
     <section class="relative gradient-whats text-white">
-      <!-- brilhos decorativos -->
       <div class="pointer-events-none absolute inset-0 opacity-30">
         <div class="absolute -top-24 -right-24 h-96 w-96 rounded-full bg-whats-green blur-3xl"></div>
         <div class="absolute bottom-0 -left-24 h-80 w-80 rounded-full bg-whats-blue/40 blur-3xl"></div>
       </div>
 
       <div class="relative mx-auto max-w-6xl px-5 pb-12 pt-7 sm:pt-10 lg:pb-20 lg:pt-14">
-        <!-- topo: marca (ícone WhatsApp, sem nome de empresa) -->
-        <div class="mb-7 flex items-center justify-center">
+        <div class="mb-6 flex items-center justify-center">
           <svg class="h-9 w-9" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">
             <path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm-3.4 6.3c.2 0 .4-.1.6.4.3.5.9 1.8.9 2 .1.1.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.1.2-.2.3-.1.6.2.3.8 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.4.1.6-.1.1-.1.6-.7.8-1 .2-.2.4-.2.6-.1.3.1 1.6.8 1.9.9.3.2.5.3.6.4 0 .1 0 .6-.2 1.3-.3.6-1.4 1.2-1.9 1.3-.5 0-1 .2-3.4-.8-2.9-1.2-4.8-4.1-4.9-4.3-.2-.2-1.2-1.5-1.2-2.8s.7-1.9 1-2.2c.2-.3.5-.3.7-.3z"/>
           </svg>
         </div>
 
-        <!-- sobrancelha (ruminação) -->
         <p class="mx-auto mb-4 max-w-2xl text-center text-sm font-semibold text-whats-green sm:text-base">
           Seu cliente chega pronto pra comprar… mas vai embora porque ninguém responde a tempo?
         </p>
 
-        <!-- título -->
         <h1 class="mx-auto max-w-4xl text-center font-display text-[30px] font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
           WhatsApp <span class="text-gradient-green">Vendedor IA</span><br class="hidden sm:block" /> Sem Complicação
         </h1>
 
-        <!-- promessa (PRSA: R + S condensados) -->
         <p class="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-white/90 sm:text-xl">
           Ative a <strong class="text-white">IA oficial do próprio WhatsApp</strong> pra atender seus clientes, tirar as dúvidas de sempre e <strong class="text-white">agendar sozinha — 24h por dia</strong>. Você liga em <strong class="text-whats-green">15 minutos</strong>, mesmo sem entender nada de tecnologia.
         </p>
 
-        <!-- imagem antes/depois -->
-        <div class="mx-auto mt-9 max-w-3xl">
-          <img
-            src="/comparacao.png"
-            width="1672"
-            height="941"
-            alt="Antes: dono de negócio estressado perdendo vendas sem o agente. Depois: feliz, fechando vendas e agendando com o WhatsApp Vendedor IA."
-            class="w-full rounded-[22px] shadow-2xl ring-1 ring-black/10"
-            fetchpriority="high"
-          />
+        <!-- rating honesto (atrelado à garantia) -->
+        <div class="mt-5 flex flex-col items-center gap-1.5">
+          <div class="flex text-whats-green">
+            <Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" />
+          </div>
+          <span class="text-xs text-white/70 sm:text-sm">Satisfação garantida — ou seu dinheiro de volta em 7 dias</span>
         </div>
 
-        <!-- cue de rolagem (sem CTA de venda aqui, de propósito) -->
-        <div class="mt-9 flex flex-col items-center gap-1 text-white/70">
+        <!-- imagem antes/depois (webp + png fallback) -->
+        <div class="mx-auto mt-8 max-w-3xl">
+          <picture>
+            <source srcset="/comparacao.webp" type="image/webp" />
+            <img
+              src="/comparacao.png"
+              width="1400"
+              height="788"
+              alt="Antes: dono de negócio estressado perdendo vendas sem o agente. Depois: feliz, fechando vendas e agendando com o WhatsApp Vendedor IA."
+              class="w-full rounded-[22px] shadow-2xl ring-1 ring-black/10"
+              fetchpriority="high"
+            />
+          </picture>
+        </div>
+
+        <div class="mt-8 flex flex-col items-center gap-1 text-white/70">
           <span class="text-xs font-semibold uppercase tracking-widest">Veja como funciona</span>
           <svg class="h-6 w-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 2 — RUMINAÇÃO / PROBLEMA (P)                             -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 2 · BARRA DE CONFIANÇA (sinais honestos)                               -->
+    <!-- ===================================================================== -->
+    <section class="border-y border-whats-green/15 bg-white">
+      <div class="mx-auto grid max-w-5xl grid-cols-2 gap-y-4 px-5 py-5 sm:grid-cols-4">
+        {[
+          { i: 'verified', t: 'IA oficial da Meta' },
+          { i: 'chat', t: 'Nativo no WhatsApp' },
+          { i: 'clock', t: 'Atende 24h por dia' },
+          { i: 'shield', t: 'Garantia de 7 dias' },
+        ].map((b) => (
+          <div class="flex items-center justify-center gap-2 text-whats-teal900">
+            <Icon name={b.i} class="h-5 w-5 text-whats-teal" />
+            <span class="text-xs font-bold sm:text-sm">{b.t}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3 · VÍDEO DE VENDAS (VSL) — slot pronto pra embed                      -->
+    <!-- ===================================================================== -->
+    <section class="bg-whats-teal900 py-14 sm:py-20">
+      <div class="mx-auto max-w-3xl px-5 text-center">
+        <h2 class="font-display text-2xl font-extrabold leading-tight text-white sm:text-4xl">
+          Veja o seu vendedor IA atendendo na prática
+        </h2>
+        <p class="mx-auto mt-3 max-w-xl text-base text-white/70 sm:text-lg">2 minutos que mudam como você enxerga o seu WhatsApp.</p>
+
+        <!-- TODO: trocar este placeholder pelo <iframe> do vídeo (YouTube/Vimeo/Panda) -->
+        <div class="group relative mx-auto mt-8 aspect-video w-full overflow-hidden rounded-2xl bg-gradient-to-br from-whats-teal700 to-whats-dark shadow-2xl ring-1 ring-white/10">
+          <div class="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-whats-green text-whats-teal900 shadow-lg transition-transform group-hover:scale-110">
+              <Icon name="play" class="h-9 w-9" />
+            </div>
+            <span class="text-sm font-semibold text-white/80">Vídeo em breve</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4 · RUMINAÇÃO / PROBLEMA (P)                                           -->
+    <!-- ===================================================================== -->
     <section class="bg-white py-14 sm:py-20">
       <div class="mx-auto max-w-3xl px-5">
-        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">
-          Reconhece essa rotina?
-        </h2>
+        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">Reconhece essa rotina?</h2>
         <p class="mx-auto mt-3 max-w-xl text-center text-base text-whats-inkSoft sm:text-lg">
           Se uma dessas frases passou pela sua cabeça esta semana, esta página é pra você.
         </p>
 
-        <!-- ruminações em formato de balão recebido -->
         <div class="mt-10 space-y-4">
           {[
             'Você já teve a sensação de que o cliente estava pronto pra comprar, mas desistiu porque ninguém respondeu a tempo?',
@@ -82,7 +126,9 @@ const PRECO = 'R$ 67';
             'O pior não é perder uma venda. É perder dezenas delas — sem nem perceber.',
           ].map((t) => (
             <div class="flex items-start gap-2.5">
-              <div class="mt-1 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-whats-chatBg text-sm">😟</div>
+              <div class="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-whats-chatBg text-whats-inkSoft">
+                <Icon name="chat" class="h-4 w-4" />
+              </div>
               <div class="bubble-in max-w-xl text-whats-ink">{t}</div>
             </div>
           ))}
@@ -90,9 +136,9 @@ const PRECO = 'R$ 67';
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 3 — A PERDA INVISÍVEL                                    -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 5 · A PERDA INVISÍVEL                                                  -->
+    <!-- ===================================================================== -->
     <section class="bg-gradient-to-br from-stress-50 to-stress-100 py-14 sm:py-20">
       <div class="mx-auto max-w-3xl px-5 text-center">
         <span class="inline-block rounded-full bg-stress-600/10 px-3 py-1 text-xs font-bold uppercase tracking-widest text-stress-700">A perda invisível</span>
@@ -118,27 +164,29 @@ const PRECO = 'R$ 67';
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 4 — ROTA (R): a virada / esperança                      -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 6 · A VIRADA (ROTA / R)                                                -->
+    <!-- ===================================================================== -->
     <section class="gradient-whats-soft py-14 sm:py-20">
       <div class="mx-auto max-w-3xl px-5 text-center">
         <h2 class="mx-auto max-w-2xl font-display text-2xl font-extrabold leading-tight text-whats-teal900 sm:text-4xl">
           E se o seu WhatsApp continuasse vendendo <span class="text-gradient-green">mesmo quando você não está?</span>
         </h2>
         <p class="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-whats-ink/80 sm:text-lg">
-          Atendendo, tirando dúvidas e agendando sozinho — dia e noite, fim de semana, feriado. E o melhor: dá pra ligar isso em <strong>15 minutos</strong>, mesmo que você não entenda nada de tecnologia.
+          Atendendo, tirando dúvidas e agendando sozinho — dia e noite, fim de semana, feriado. E dá pra ligar isso em <strong>15 minutos</strong>, mesmo que você não entenda nada de tecnologia.
         </p>
 
         <div class="mx-auto mt-9 flex max-w-2xl flex-wrap items-stretch justify-center gap-3">
           {[
-            { i: '🕐', t: 'Atende 24h', d: 'nunca dorme, nunca tira folga' },
-            { i: '⚡', t: 'Liga em 15 min', d: 'sem instalar nada complicado' },
-            { i: '🙂', t: 'Sem tecnologia', d: 'se manda áudio, você consegue' },
+            { i: 'clock', t: 'Atende 24h', d: 'nunca dorme, nunca tira folga' },
+            { i: 'bolt', t: 'Liga em 15 min', d: 'sem instalar nada complicado' },
+            { i: 'sparkle', t: 'Sem tecnologia', d: 'se manda áudio, você consegue' },
           ].map((p) => (
             <div class="flex-1 min-w-[150px] rounded-2xl bg-white p-5 text-center shadow-sm ring-1 ring-whats-teal/10">
-              <div class="text-3xl">{p.i}</div>
-              <div class="mt-2 font-display font-extrabold text-whats-teal900">{p.t}</div>
+              <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-xl bg-whats-green/15 text-whats-teal700">
+                <Icon name={p.i} class="h-6 w-6" />
+              </div>
+              <div class="mt-3 font-display font-extrabold text-whats-teal900">{p.t}</div>
               <div class="mt-1 text-sm text-whats-inkSoft">{p.d}</div>
             </div>
           ))}
@@ -146,9 +194,9 @@ const PRECO = 'R$ 67';
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 5 — SOLUÇÃO (S): a revelação                            -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 7 · A SOLUÇÃO (S) — IA oficial + mock de conversa                      -->
+    <!-- ===================================================================== -->
     <section class="bg-white py-14 sm:py-20">
       <div class="mx-auto grid max-w-5xl items-center gap-10 px-5 lg:grid-cols-2">
         <div>
@@ -157,7 +205,7 @@ const PRECO = 'R$ 67';
             Quem faz isso é a <span class="text-gradient-green">IA oficial do próprio WhatsApp</span>.
           </h2>
           <p class="mt-5 text-base leading-relaxed text-whats-inkSoft sm:text-lg">
-            De graça, dentro do app. Sem chatbot caro, sem programador e sem risco de gambiarra. E eu montei o passo a passo pra você ativar e treinar essa IA <strong class="text-whats-ink">com a sua cara</strong> — respondendo na hora, tirando as dúvidas de sempre e agendando automaticamente.
+            De graça, dentro do app. Sem chatbot caro, sem programador e sem gambiarra. O guia te leva pelo passo a passo pra ativar e treinar essa IA <strong class="text-whats-ink">com a sua cara</strong> — respondendo na hora, tirando as dúvidas de sempre e agendando automaticamente.
           </p>
           <ul class="mt-6 space-y-3">
             {[
@@ -167,19 +215,18 @@ const PRECO = 'R$ 67';
               'Treinada no seu jeito de falar',
             ].map((t) => (
               <li class="flex items-center gap-3 text-whats-ink">
-                <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-white">✓</span>
+                <span class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-white"><Icon name="check" class="h-4 w-4" /></span>
                 {t}
               </li>
             ))}
           </ul>
         </div>
 
-        <!-- mock de telefone -->
         <div class="relative mx-auto w-full max-w-[280px]">
           <div class="rounded-[34px] bg-whats-teal900 p-2.5 shadow-2xl">
             <div class="overflow-hidden rounded-[26px] chat-bg">
               <div class="gradient-whats flex items-center gap-2.5 px-4 py-3 text-white">
-                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15">🤖</div>
+                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15"><Icon name="chat" class="h-5 w-5" /></div>
                 <div>
                   <div class="text-sm font-bold leading-tight">Seu Vendedor IA</div>
                   <div class="text-[11px] text-whats-green">online agora</div>
@@ -187,9 +234,9 @@ const PRECO = 'R$ 67';
               </div>
               <div class="space-y-2 px-3 py-4">
                 <div class="bubble-in ml-auto max-w-[80%] text-whats-ink">Oi, vocês ainda têm o produto X? Qual o valor?</div>
-                <div class="bubble-out mr-auto max-w-[80%] text-whats-ink">Temos sim! 🙌 O valor é R$ X. Quer que eu já reserve o seu e agende a retirada?</div>
+                <div class="bubble-out mr-auto max-w-[80%] text-whats-ink">Temos sim! O valor é R$ X. Quer que eu já reserve o seu e agende a retirada?</div>
                 <div class="bubble-in ml-auto max-w-[80%] text-whats-ink">Pode ser amanhã de manhã?</div>
-                <div class="bubble-out mr-auto max-w-[80%] text-whats-ink">Agendado pra amanhã 9h ✅ Vou te chamar pra confirmar. Posso passar pro responsável fechar? 😉</div>
+                <div class="bubble-out mr-auto max-w-[80%] text-whats-ink">Agendado pra amanhã 9h. Vou te chamar pra confirmar e passo pro responsável fechar com você.</div>
               </div>
             </div>
           </div>
@@ -197,27 +244,47 @@ const PRECO = 'R$ 67';
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 6 — COMO FUNCIONA / O QUE A IA FAZ                       -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 8 · COMO ATIVAR EM 3 PASSOS (mecanismo)                                -->
+    <!-- ===================================================================== -->
+    <section class="gradient-whats-soft py-14 sm:py-20">
+      <div class="mx-auto max-w-4xl px-5">
+        <h2 class="text-center font-display text-2xl font-extrabold text-whats-teal900 sm:text-4xl">Pronto em 3 passos</h2>
+        <p class="mx-auto mt-3 max-w-xl text-center text-base text-whats-inkSoft sm:text-lg">Do zero ao vendedor ligado — em cerca de 15 minutos.</p>
+
+        <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {[
+            { n: '1', t: 'Ative', d: 'Abra o guia e ligue a IA oficial direto no seu WhatsApp — sem instalar nada.' },
+            { n: '2', t: 'Treine', d: 'Use os modelos prontos pra IA responder com a cara do seu negócio.' },
+            { n: '3', t: 'Venda', d: 'Ela atende, agenda e te chama quando o cliente está quente pra fechar.' },
+          ].map((s) => (
+            <div class="relative rounded-2xl bg-white p-6 shadow-sm ring-1 ring-whats-teal/10">
+              <div class="flex h-10 w-10 items-center justify-center rounded-full bg-whats-green font-display text-lg font-extrabold text-whats-teal900">{s.n}</div>
+              <div class="mt-4 font-display text-lg font-extrabold text-whats-teal900">{s.t}</div>
+              <div class="mt-1 text-sm text-whats-inkSoft">{s.d}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 9 · O QUE A IA FAZ (capacidades)                                       -->
+    <!-- ===================================================================== -->
     <section class="chat-bg py-14 sm:py-20">
       <div class="mx-auto max-w-4xl px-5">
-        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">
-          O que o seu Vendedor IA faz sozinho
-        </h2>
-        <p class="mx-auto mt-3 max-w-xl text-center text-base text-whats-inkSoft sm:text-lg">
-          Você cuida do que importa. O WhatsApp trabalha por você.
-        </p>
+        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">O que o seu Vendedor IA faz sozinho</h2>
+        <p class="mx-auto mt-3 max-w-xl text-center text-base text-whats-inkSoft sm:text-lg">Você cuida do que importa. O WhatsApp trabalha por você.</p>
 
         <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {[
-            { i: '💬', t: 'Responde na hora', d: 'Atende cada cliente em segundos, a qualquer hora — sem deixar ninguém no vácuo.' },
-            { i: '❓', t: 'Tira as dúvidas de sempre', d: 'Preço, horário, prazo, endereço… ela responde igual você responderia.' },
-            { i: '📅', t: 'Agenda automaticamente', d: 'Marca, confirma e lembra o cliente do compromisso — derruba as faltas.' },
-            { i: '🔥', t: 'Te chama na hora certa', d: 'Quando o cliente está quente pra comprar, ela te passa pra você fechar.' },
+            { i: 'chat', t: 'Responde na hora', d: 'Atende cada cliente em segundos, a qualquer hora — sem deixar ninguém no vácuo.' },
+            { i: 'help', t: 'Tira as dúvidas de sempre', d: 'Preço, horário, prazo, endereço… ela responde igual você responderia.' },
+            { i: 'calendar', t: 'Agenda automaticamente', d: 'Marca, confirma e lembra o cliente do compromisso — derruba as faltas.' },
+            { i: 'flame', t: 'Te chama na hora certa', d: 'Quando o cliente está quente pra comprar, ela te passa pra você fechar.' },
           ].map((c) => (
             <div class="flex items-start gap-4 rounded-2xl bg-white p-5 shadow-sm">
-              <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-whats-green/15 text-2xl">{c.i}</div>
+              <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-whats-green/15 text-whats-teal700"><Icon name={c.i} class="h-6 w-6" /></div>
               <div>
                 <div class="font-display text-lg font-extrabold text-whats-ink">{c.t}</div>
                 <div class="mt-1 text-sm text-whats-inkSoft">{c.d}</div>
@@ -228,42 +295,184 @@ const PRECO = 'R$ 67';
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 7 — O QUE VOCÊ RECEBE + objeção "IA não é pra mim"       -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 10 · PRA QUEM É / PRA QUEM NÃO É                                       -->
+    <!-- ===================================================================== -->
     <section class="bg-white py-14 sm:py-20">
       <div class="mx-auto max-w-4xl px-5">
-        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">
-          O que você recebe no guia
-        </h2>
-        <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {[
-            { i: '📘', t: 'Guia passo a passo', d: 'Do zero ao vendedor ligado, em português claro. Sem termo técnico.' },
-            { i: '🎯', t: 'Treino com a sua cara', d: 'Modelos prontos pra IA falar como o seu negócio fala.' },
-            { i: '📅', t: 'Agenda + lembretes', d: 'Como configurar agendamento automático e lembrete que derruba falta.' },
-          ].map((c) => (
-            <div class="rounded-2xl border border-whats-green/15 p-6 text-center">
-              <div class="text-4xl">{c.i}</div>
-              <div class="mt-3 font-display text-lg font-extrabold text-whats-ink">{c.t}</div>
-              <div class="mt-1 text-sm text-whats-inkSoft">{c.d}</div>
+        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">Isto é pra você?</h2>
+        <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div class="rounded-2xl border-2 border-whats-green/30 bg-whats-green/5 p-6">
+            <div class="mb-4 flex items-center gap-2 font-display text-lg font-extrabold text-whats-teal900">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-whats-green text-white"><Icon name="check" class="h-4 w-4" /></span>
+              É pra você se…
             </div>
-          ))}
-        </div>
-
-        <!-- destrói a objeção -->
-        <div class="mx-auto mt-10 max-w-2xl rounded-2xl bg-whats-green/10 p-6 text-center sm:p-8">
-          <p class="font-display text-xl font-extrabold text-whats-teal900 sm:text-2xl">"Mas isso de IA não é pra mim…"</p>
-          <p class="mt-3 text-base text-whats-ink/80 sm:text-lg">
-            Se você sabe <strong>mandar um áudio no WhatsApp</strong>, você consegue ligar o seu vendedor IA. É a IA oficial do app, em 15 minutos, sem instalar nada.
-          </p>
+            <ul class="space-y-2.5 text-whats-ink">
+              {[
+                'Atende e vende pelo WhatsApp (loja, clínica, serviço, autônomo)',
+                'Perde mensagem e demora pra responder',
+                'Não pode (ou não quer) contratar mais um atendente',
+                'Quer testar IA sem gastar com chatbot ou programador',
+              ].map((t) => (
+                <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-whats-green" /><span>{t}</span></li>
+              ))}
+            </ul>
+          </div>
+          <div class="rounded-2xl border-2 border-stress-300/50 bg-stress-50 p-6">
+            <div class="mb-4 flex items-center gap-2 font-display text-lg font-extrabold text-stress-700">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-stress-500 text-white"><Icon name="x" class="h-4 w-4" /></span>
+              Não é pra você se…
+            </div>
+            <ul class="space-y-2.5 text-stress-900/80">
+              {[
+                'Não atende clientes pelo WhatsApp',
+                'Procura um robô pra fazer spam em massa',
+                'Não está disposto a seguir um passo a passo de 15 min',
+                'Quer transferir 100% da venda e nunca mais falar com cliente',
+              ].map((t) => (
+                <li class="flex items-start gap-2.5"><Icon name="x" class="mt-0.5 h-5 w-5 flex-shrink-0 text-stress-500" /><span>{t}</span></li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 8 — É A IA OFICIAL / AUTORIDADE                          -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 11 · O QUE VOCÊ RECEBE + BÔNUS (ancoragem de valor)                    -->
+    <!-- PROPOSTA de stack — Anderson revisa entregáveis/bônus e valores.       -->
+    <!-- ===================================================================== -->
     <section class="gradient-whats py-14 text-white sm:py-20">
+      <div class="mx-auto max-w-3xl px-5">
+        <h2 class="text-center font-display text-2xl font-extrabold sm:text-4xl">Tudo que você leva</h2>
+        <p class="mx-auto mt-3 max-w-xl text-center text-base text-white/75 sm:text-lg">Um pacote completo pra ligar seu vendedor hoje — sem enrolação.</p>
+
+        <div class="mx-auto mt-9 max-w-2xl space-y-3">
+          {[
+            { t: 'Guia "Vendedor IA Sem Complicação"', d: 'passo a passo pra ativar a IA oficial do WhatsApp', v: 'R$ 97' },
+            { t: 'Biblioteca de respostas prontas', d: 'modelos pra treinar a IA a falar como o seu negócio', v: 'R$ 47' },
+            { t: 'Guia de agendamento automático', d: 'configurar marcações e lembretes que derrubam faltas', v: 'R$ 37' },
+          ].map((it) => (
+            <div class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 ring-1 ring-white/10">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-white"><Icon name="check" class="h-5 w-5" /></span>
+              <div class="flex-1">
+                <div class="font-bold">{it.t}</div>
+                <div class="text-sm text-white/70">{it.d}</div>
+              </div>
+              <div class="text-sm text-white/60 line-through">{it.v}</div>
+            </div>
+          ))}
+
+          <div class="pt-2 text-center text-xs font-bold uppercase tracking-widest text-whats-green">+ Bônus exclusivos</div>
+
+          {[
+            { t: 'Bônus 1 · 30 mensagens que vendem', d: 'pra copiar, colar e a IA usar', v: 'R$ 27' },
+            { t: 'Bônus 2 · Checklist "ativar em 15 min"', d: 'pra não errar nenhum passo', v: 'R$ 17' },
+          ].map((it) => (
+            <div class="flex items-center gap-4 rounded-2xl bg-whats-green/10 p-4 ring-1 ring-whats-green/25">
+              <span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-white"><Icon name="sparkle" class="h-5 w-5" /></span>
+              <div class="flex-1">
+                <div class="font-bold">{it.t}</div>
+                <div class="text-sm text-white/70">{it.d}</div>
+              </div>
+              <div class="text-sm text-white/60 line-through">{it.v}</div>
+            </div>
+          ))}
+        </div>
+
+        <p class="mt-7 text-center text-base text-white/80">
+          Valor total: <span class="line-through">R$ 225</span> · hoje por apenas <strong class="text-whats-green">{PRECO}</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 12 · OFERTA + BOTÃO DE VENDA #1 (Ação) + escassez + garantia           -->
+    <!-- ===================================================================== -->
+    <section id="oferta" class="gradient-whats-soft py-16 sm:py-20">
+      <div class="mx-auto max-w-2xl px-5">
+        <div class="text-center">
+          <span class="inline-block text-xs font-bold uppercase tracking-widest text-whats-teal700">Oferta de lançamento</span>
+          <h2 class="mt-3 font-display text-2xl font-extrabold leading-tight text-whats-teal900 sm:text-4xl">Coloque seu WhatsApp pra vender por você</h2>
+        </div>
+
+        <div class="relative mt-9 rounded-3xl border-4 border-whats-green bg-white p-7 shadow-2xl sm:p-9">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-whats-green px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-whats-teal900 shadow-lg">
+            Acesso imediato
+          </div>
+
+          <ul class="mb-7 mt-2 space-y-3">
+            {[
+              'Guia passo a passo pra ativar a IA oficial do WhatsApp',
+              'Biblioteca de respostas + treino com a sua cara',
+              'Agendamento e lembretes automáticos',
+              '2 bônus (30 mensagens que vendem + checklist 15 min)',
+              'Em português claro — sem termo técnico, sem programador',
+            ].map((t) => (
+              <li class="flex items-start gap-3 text-whats-ink">
+                <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-white"><Icon name="check" class="h-4 w-4" /></span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="mb-6 text-center">
+            <div class="text-sm text-whats-inkSoft">De <span class="line-through">R$ 225</span> por apenas</div>
+            <div class="font-display text-5xl font-extrabold text-whats-teal900 sm:text-6xl">{PRECO}</div>
+            <div class="text-sm text-whats-inkSoft">à vista ou parcelado no cartão</div>
+          </div>
+
+          <CTAButton label="QUERO MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Garantia de 7 dias · Sem mensalidade" />
+
+          <!-- escassez honesta (preço de lançamento) -->
+          <div class="mt-5 flex items-center justify-center gap-2 text-center text-xs font-semibold text-stress-600">
+            <Icon name="flame" class="h-4 w-4" />
+            Preço de lançamento — sobe assim que a turma encher
+          </div>
+        </div>
+
+        <!-- garantia (selo) -->
+        <div class="mt-8 flex flex-col items-center gap-4 rounded-3xl bg-white p-6 text-center shadow-sm ring-1 ring-whats-green/15 sm:flex-row sm:text-left">
+          <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-whats-green/15 text-whats-teal700"><Icon name="shield" class="h-7 w-7" /></div>
+          <div>
+            <div class="font-display text-lg font-extrabold text-whats-teal900">Garantia incondicional de 7 dias</div>
+            <p class="mt-1 text-sm text-whats-ink/80">Ative, teste e veja seu WhatsApp atendendo. Se não for pra você, devolvemos 100% do valor. O risco é todo nosso.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 13 · DEPOIMENTOS — ⚠️ PLACEHOLDER: trocar por reais antes de anunciar  -->
+    <!-- ===================================================================== -->
+    <section class="bg-white py-14 sm:py-20">
+      <div class="mx-auto max-w-4xl px-5">
+        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">Quem ativou, não atende mais como antes</h2>
+        <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {[
+            { q: 'Em 15 minutos meu WhatsApp já estava respondendo sozinho. Parei de perder cliente de madrugada.', a: 'Marcos', s: 'loja de autopeças' },
+            { q: 'Achei que era complicado, mas é só seguir o passo a passo. Hoje a agenda enche sem eu tocar no celular.', a: 'Patrícia', s: 'clínica de estética' },
+            { q: 'O melhor é que ela me chama só quando o cliente tá pronto pra fechar. Foco no que importa.', a: 'Rafael', s: 'prestador de serviço' },
+          ].map((d) => (
+            <figure class="flex h-full flex-col rounded-2xl bg-whats-chatBg p-6 ring-1 ring-black/5">
+              <div class="mb-3 flex text-whats-green">
+                <Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" />
+              </div>
+              <blockquote class="flex-1 text-sm text-whats-ink">"{d.q}"</blockquote>
+              <figcaption class="mt-4 flex items-center gap-3">
+                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-whats-green/20 text-whats-teal700"><Icon name="user" class="h-5 w-5" /></span>
+                <span class="text-sm"><strong class="text-whats-ink">{d.a}</strong><br /><span class="text-whats-inkSoft">{d.s}</span></span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 14 · É A IA OFICIAL / AUTORIDADE + objeção "não é pra mim"             -->
+    <!-- ===================================================================== -->
+    <section class="bg-whats-teal900 py-14 text-white sm:py-20">
       <div class="mx-auto max-w-3xl px-5 text-center">
         <h2 class="mx-auto max-w-2xl font-display text-2xl font-extrabold leading-tight sm:text-4xl">
           Não é gambiarra. Não é chatbot pago. É a <span class="text-whats-green">IA oficial da Meta.</span>
@@ -273,77 +482,32 @@ const PRECO = 'R$ 67';
         </p>
         <div class="mx-auto mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
           {[
-            { i: '✅', t: 'Oficial Meta' },
-            { i: '💸', t: 'Sem mensalidade' },
-            { i: '🚫', t: 'Sem programador' },
-            { i: '🔒', t: 'Sem banimento' },
+            { i: 'verified', t: 'Oficial Meta' },
+            { i: 'wallet', t: 'Sem mensalidade' },
+            { i: 'nocode', t: 'Sem programador' },
+            { i: 'lock', t: 'Sem banimento' },
           ].map((b) => (
             <div class="rounded-2xl bg-white/10 p-4 ring-1 ring-white/15">
-              <div class="text-2xl">{b.i}</div>
+              <div class="mx-auto flex h-10 w-10 items-center justify-center text-whats-green"><Icon name={b.i} class="h-6 w-6" /></div>
               <div class="mt-1.5 text-sm font-bold">{b.t}</div>
             </div>
           ))}
         </div>
-      </div>
-    </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 9 — OFERTA + BOTÃO DE VENDA #1 (Ação)                    -->
-    <!-- ============================================================= -->
-    <section id="oferta" class="gradient-whats-soft py-16 sm:py-20">
-      <div class="mx-auto max-w-2xl px-5">
-        <div class="text-center">
-          <span class="inline-block text-xs font-bold uppercase tracking-widest text-whats-teal700">Oferta de lançamento</span>
-          <h2 class="mt-3 font-display text-2xl font-extrabold leading-tight text-whats-teal900 sm:text-4xl">
-            Coloque seu WhatsApp pra vender por você
-          </h2>
-        </div>
-
-        <!-- card de preço -->
-        <div class="relative mt-9 rounded-3xl border-4 border-whats-green bg-white p-7 shadow-2xl sm:p-9">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-whats-green px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-whats-teal900 shadow-lg">
-            Acesso imediato
-          </div>
-
-          <ul class="mb-7 mt-2 space-y-3">
-            {[
-              'Guia passo a passo pra ativar a IA oficial do WhatsApp',
-              'Modelos de treino pra IA falar com a sua cara',
-              'Configuração de atendimento e agendamento automático',
-              'Em português claro — sem termo técnico, sem programador',
-            ].map((t) => (
-              <li class="flex items-start gap-3 text-whats-ink">
-                <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-white">✓</span>
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-
-          <div class="mb-6 text-center">
-            <div class="text-sm text-whats-inkSoft">De <span class="line-through">R$ 197</span> por apenas</div>
-            <div class="font-display text-5xl font-extrabold text-whats-teal900 sm:text-6xl">{PRECO}</div>
-            <div class="text-sm text-whats-inkSoft">à vista ou parcelado no cartão</div>
-          </div>
-
-          <CTAButton label="QUERO MEU VENDEDOR IA · R$ 67" sub="🔒 Pagamento seguro · Garantia de 7 dias · Sem mensalidade" />
+        <div class="mx-auto mt-9 max-w-2xl rounded-2xl bg-white/5 p-6 ring-1 ring-white/10 sm:p-8">
+          <p class="font-display text-xl font-extrabold text-white sm:text-2xl">"Mas isso de IA não é pra mim…"</p>
+          <p class="mt-3 text-base text-white/80">
+            Se você sabe <strong class="text-white">mandar um áudio no WhatsApp</strong>, você consegue ligar o seu vendedor IA. É a IA oficial do app, em 15 minutos, sem instalar nada.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 10 — GARANTIA + FAQ                                      -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 15 · FAQ                                                               -->
+    <!-- ===================================================================== -->
     <section class="bg-white py-14 sm:py-20">
       <div class="mx-auto max-w-3xl px-5">
-        <!-- garantia -->
-        <div class="mb-12 flex flex-col items-center gap-4 rounded-3xl bg-whats-green/10 p-7 text-center sm:flex-row sm:text-left">
-          <div class="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-whats-green text-3xl text-white">🛡️</div>
-          <div>
-            <div class="font-display text-xl font-extrabold text-whats-teal900">Garantia incondicional de 7 dias</div>
-            <p class="mt-1 text-whats-ink/80">Ative, teste e veja seu WhatsApp atendendo. Se não for pra você, devolvemos 100% do valor. O risco é todo nosso.</p>
-          </div>
-        </div>
-
         <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-3xl">Perguntas frequentes</h2>
         <div class="mt-8 space-y-3">
           {[
@@ -352,6 +516,7 @@ const PRECO = 'R$ 67';
             { q: 'Tenho risco de banimento?', a: 'Não. É a IA oficial do próprio WhatsApp, lançada pela Meta, dentro do app. Nada de gambiarra ou chatbot externo.' },
             { q: 'Funciona pro meu tipo de negócio?', a: 'Sim. Loja, clínica, prestador de serviço, autônomo — qualquer um que atende e vende pelo WhatsApp.' },
             { q: 'Tem mensalidade?', a: 'Não. Você paga uma vez pelo guia. A IA é gratuita dentro do WhatsApp.' },
+            { q: 'E se não funcionar pra mim?', a: 'Você tem 7 dias de garantia incondicional. Não gostou, devolvemos 100% do valor — sem perguntas.' },
           ].map((f) => (
             <details class="group rounded-2xl border border-whats-green/15 bg-white p-5 [&_summary::-webkit-details-marker]:hidden">
               <summary class="flex cursor-pointer items-center justify-between gap-3 font-bold text-whats-ink">
@@ -365,44 +530,42 @@ const PRECO = 'R$ 67';
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 11 — RECAP / URGÊNCIA (antes x depois + FOMO)            -->
-    <!-- ============================================================= -->
-    <section class="bg-whats-teal900 py-14 text-white sm:py-20">
+    <!-- ===================================================================== -->
+    <!-- 16 · RECAP ANTES × DEPOIS + URGÊNCIA                                   -->
+    <!-- ===================================================================== -->
+    <section class="bg-gradient-to-br from-stress-50 via-white to-whats-green/10 py-14 sm:py-20">
       <div class="mx-auto max-w-4xl px-5">
-        <h2 class="text-center font-display text-2xl font-extrabold leading-tight sm:text-4xl">
+        <h2 class="text-center font-display text-2xl font-extrabold leading-tight text-whats-ink sm:text-4xl">
           Enquanto você decide, seu concorrente já está respondendo na hora.
         </h2>
-        <p class="mx-auto mt-4 max-w-2xl text-center text-base text-white/80 sm:text-lg">
+        <p class="mx-auto mt-4 max-w-2xl text-center text-base text-whats-inkSoft sm:text-lg">
           A IA oficial do WhatsApp ainda está liberada de graça. Quem ativa agora sai na frente — antes da concorrência entender que ela existe.
         </p>
 
         <div class="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-          <div class="rounded-2xl bg-stress-900/40 p-6 ring-1 ring-white/10">
-            <div class="mb-3 text-sm font-bold uppercase tracking-widest text-stress-300">Sem o agente</div>
-            <ul class="space-y-2 text-white/80">
-              <li>❌ Cliente esperando horas por resposta</li>
-              <li>❌ Venda fechando com o concorrente</li>
-              <li>❌ Você refém do celular o dia inteiro</li>
-              <li>❌ Dinheiro vazando sem você ver</li>
+          <div class="rounded-2xl border border-stress-200 bg-white p-6">
+            <div class="mb-3 text-sm font-bold uppercase tracking-widest text-stress-600">Sem o agente</div>
+            <ul class="space-y-2.5 text-whats-ink/80">
+              {['Cliente esperando horas por resposta','Venda fechando com o concorrente','Você refém do celular o dia inteiro','Dinheiro vazando sem você ver'].map((t) => (
+                <li class="flex items-start gap-2.5"><Icon name="x" class="mt-0.5 h-5 w-5 flex-shrink-0 text-stress-500" /><span>{t}</span></li>
+              ))}
             </ul>
           </div>
-          <div class="rounded-2xl bg-whats-green/15 p-6 ring-1 ring-whats-green/30">
-            <div class="mb-3 text-sm font-bold uppercase tracking-widest text-whats-green">Com o Vendedor IA</div>
-            <ul class="space-y-2 text-white">
-              <li>✅ Resposta na hora, 24h por dia</li>
-              <li>✅ Agendamentos confirmados sozinhos</li>
-              <li>✅ Você livre pra cuidar do que importa</li>
-              <li>✅ Cada oportunidade aproveitada</li>
+          <div class="rounded-2xl border-2 border-whats-green/30 bg-whats-green/5 p-6">
+            <div class="mb-3 text-sm font-bold uppercase tracking-widest text-whats-teal700">Com o Vendedor IA</div>
+            <ul class="space-y-2.5 text-whats-ink">
+              {['Resposta na hora, 24h por dia','Agendamentos confirmados sozinhos','Você livre pra cuidar do que importa','Cada oportunidade aproveitada'].map((t) => (
+                <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-5 w-5 flex-shrink-0 text-whats-green" /><span>{t}</span></li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- BLOCO 12 — CTA FINAL + BOTÃO DE VENDA #2 (Ação)               -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- 17 · CTA FINAL + BOTÃO DE VENDA #2 + PS (Ação)                         -->
+    <!-- ===================================================================== -->
     <section class="gradient-whats py-16 text-white sm:py-24">
       <div class="mx-auto max-w-2xl px-5 text-center">
         <h2 class="font-display text-3xl font-extrabold leading-tight sm:text-5xl">
@@ -413,16 +576,18 @@ const PRECO = 'R$ 67';
         </p>
 
         <div class="mx-auto mt-9 max-w-md">
-          <CTAButton label="ATIVAR MEU VENDEDOR IA · R$ 67" sub="🔒 Pagamento seguro · Garantia de 7 dias · Sem mensalidade" />
+          <CTAButton label="ATIVAR MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Garantia de 7 dias · Sem mensalidade" />
         </div>
 
-        <p class="mt-6 text-xs text-white/60">Acesso imediato após a confirmação do pagamento.</p>
+        <p class="mx-auto mt-8 max-w-xl rounded-2xl bg-white/5 p-4 text-sm text-white/70 ring-1 ring-white/10">
+          <strong class="text-white">P.S.</strong> Cada dia sem o agente é mais um dia de mensagem sem resposta e venda indo pro concorrente. Por {PRECO}, você liga hoje e ainda tem 7 dias pra testar sem risco.
+        </p>
       </div>
     </section>
 
-    <!-- ============================================================= -->
-    <!-- RODAPÉ                                                        -->
-    <!-- ============================================================= -->
+    <!-- ===================================================================== -->
+    <!-- RODAPÉ                                                                 -->
+    <!-- ===================================================================== -->
     <footer class="bg-whats-dark py-10 text-center text-sm text-white/55">
       <div class="mx-auto max-w-3xl px-5">
         <div class="mb-3 font-display text-base font-bold text-white">WhatsApp Vendedor IA Sem Complicação</div>
@@ -432,5 +597,35 @@ const PRECO = 'R$ 67';
         <p class="mt-4 text-xs text-white/40">© 2026 · Todos os direitos reservados</p>
       </div>
     </footer>
+
+    <!-- ===================================================================== -->
+    <!-- STICKY CTA (mobile) — aparece só DEPOIS do bloco de oferta             -->
+    <!-- ===================================================================== -->
+    <div
+      id="sticky-cta"
+      class="fixed inset-x-0 bottom-0 z-50 translate-y-full border-t border-whats-green/30 bg-white/95 p-3 shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.25)] backdrop-blur transition-transform duration-300 sm:hidden"
+    >
+      <a href="#oferta" class="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-br from-whats-green to-whats-green700 px-5 py-3.5 font-display text-base font-extrabold uppercase tracking-wide text-white">
+        Quero meu Vendedor IA · R$ 67
+        <Icon name="arrow" class="h-5 w-5" />
+      </a>
+    </div>
+
+    <script is:inline>
+      (function () {
+        var sticky = document.getElementById('sticky-cta');
+        var offer = document.getElementById('oferta');
+        if (!sticky || !offer) return;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            // mostra a sticky assim que o bloco de oferta começa a aparecer e mantém depois
+            if (e.isIntersecting || e.boundingClientRect.top < 0) {
+              sticky.classList.remove('translate-y-full');
+            }
+          });
+        }, { threshold: 0, rootMargin: '0px 0px -40% 0px' });
+        io.observe(offer);
+      })();
+    </script>
   </main>
 </Layout>
