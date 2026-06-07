@@ -58,6 +58,20 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
     <!-- colar o snippet aqui e o handler de InitiateCheckout abaixo.    -->
     <!-- ============================================================= -->
 
+    <!-- Hotmart checkout widget (overlay) — produto R106181710S -->
+    <script is:inline>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://static.hotmart.com/checkout/widget.min.js';
+        document.head.appendChild(s);
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.type = 'text/css';
+        l.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+        document.head.appendChild(l);
+      })();
+    </script>
+
     <!-- Structured Data - Product -->
     <script
       type="application/ld+json"
@@ -74,6 +88,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
           price: '67.00',
           priceCurrency: 'BRL',
           availability: 'https://schema.org/InStock',
+          url: 'https://pay.hotmart.com/R106181710S?checkoutMode=2',
         },
       })}
     />
