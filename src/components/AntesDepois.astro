@@ -1,0 +1,126 @@
+---
+// Cena "antes/depois": à esquerda, dono estressado e atarefado sem o agente;
+// à direita, o mesmo dono feliz fechando vendas com o WhatsApp Vendedor IA.
+---
+
+<div class="relative mx-auto w-full max-w-2xl">
+  <div
+    class="grid grid-cols-2 overflow-hidden rounded-[28px] shadow-2xl ring-1 ring-black/10"
+  >
+    <!-- ============ ANTES (sem o agente) ============ -->
+    <div class="relative bg-gradient-to-br from-slate-200 via-stress-50 to-stress-100 p-3 sm:p-5">
+      <div
+        class="absolute left-2 top-2 sm:left-3 sm:top-3 z-20 rounded-full bg-stress-600 px-2.5 py-1 text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wide text-white shadow"
+      >
+        Sem o agente
+      </div>
+
+      <!-- notificações vermelhas (caos) -->
+      <div class="absolute right-1.5 top-9 sm:right-3 sm:top-12 z-20 rotate-6 rounded-xl bg-white/95 px-2 py-1 text-[8px] sm:text-[10px] font-bold text-stress-700 shadow-md ring-1 ring-stress-200">
+        🔴 47 não lidas
+      </div>
+      <div class="absolute right-2 top-24 sm:top-28 z-20 -rotate-3 rounded-xl bg-white/95 px-2 py-1 text-[8px] sm:text-[10px] font-bold text-stress-700 shadow-md ring-1 ring-stress-200">
+        ⏰ respondeu tarde
+      </div>
+      <div class="absolute left-1.5 bottom-8 z-20 -rotate-6 rounded-xl bg-white/95 px-2 py-1 text-[8px] sm:text-[10px] font-bold text-stress-700 shadow-md ring-1 ring-stress-200">
+        💸 venda perdida
+      </div>
+
+      <!-- personagem estressado -->
+      <svg viewBox="0 0 200 230" class="relative z-10 mx-auto mt-6 h-44 w-full sm:h-60" role="img" aria-label="Dono de negócio estressado, com as mãos na cabeça, afogado em mensagens">
+        <!-- ombros / camisa -->
+        <path d="M22 230 C22 182 55 162 100 162 C145 162 178 182 178 230 Z" fill="#94a3b8"/>
+        <path d="M22 230 C22 182 55 162 100 162 L100 230 Z" fill="#7e8a9a" opacity="0.4"/>
+        <!-- pescoço -->
+        <rect x="86" y="128" width="28" height="40" rx="10" fill="#e3a875"/>
+        <!-- cabeça -->
+        <circle cx="100" cy="98" r="46" fill="#eeba8c"/>
+        <!-- orelhas -->
+        <circle cx="56" cy="100" r="9" fill="#e3a875"/>
+        <circle cx="144" cy="100" r="9" fill="#e3a875"/>
+        <!-- cabelo bagunçado -->
+        <path d="M54 92 C50 52 78 40 100 40 C124 40 152 54 146 94 C140 78 128 70 128 70 C126 80 120 82 120 82 C118 72 110 68 110 68 C108 80 96 80 96 80 C92 70 82 70 82 70 C82 82 72 84 72 84 C70 74 60 76 54 92 Z" fill="#4a3526"/>
+        <!-- sobrancelhas preocupadas (cantos internos pra cima) -->
+        <path d="M70 86 L90 92" stroke="#4a3526" stroke-width="5" stroke-linecap="round"/>
+        <path d="M130 86 L110 92" stroke="#4a3526" stroke-width="5" stroke-linecap="round"/>
+        <!-- olhos cansados -->
+        <circle cx="82" cy="102" r="4.5" fill="#2b2b2b"/>
+        <circle cx="118" cy="102" r="4.5" fill="#2b2b2b"/>
+        <path d="M74 110 C78 113 86 113 90 110" stroke="#b9895f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <path d="M110 110 C114 113 122 113 126 110" stroke="#b9895f" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <!-- boca tensa / preocupada -->
+        <path d="M86 126 C94 120 106 120 114 126" stroke="#8a4b3a" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <!-- gota de suor -->
+        <path d="M139 70 C139 70 132 82 132 88 a7 7 0 1 0 14 0 C146 82 139 70 139 70 Z" fill="#34B7F1" opacity="0.9"/>
+        <!-- mãos na cabeça (estresse) -->
+        <ellipse cx="54" cy="84" rx="13" ry="17" fill="#eeba8c" transform="rotate(-18 54 84)"/>
+        <ellipse cx="146" cy="84" rx="13" ry="17" fill="#eeba8c" transform="rotate(18 146 84)"/>
+      </svg>
+    </div>
+
+    <!-- ============ DEPOIS (com o WhatsApp Vendedor IA) ============ -->
+    <div class="relative gradient-whats p-3 sm:p-5">
+      <div
+        class="absolute right-2 top-2 sm:right-3 sm:top-3 z-20 rounded-full bg-whats-green px-2.5 py-1 text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wide text-whats-teal900 shadow"
+      >
+        Com o agente IA
+      </div>
+
+      <!-- chips verdes (vendas/agenda) -->
+      <div class="absolute left-1.5 top-9 sm:left-3 sm:top-12 z-20 -rotate-6 rounded-xl bg-white px-2 py-1 text-[8px] sm:text-[10px] font-bold text-whats-teal700 shadow-md">
+        ✅ Venda fechada
+      </div>
+      <div class="absolute left-2 top-24 sm:top-28 z-20 rotate-3 rounded-xl bg-white px-2 py-1 text-[8px] sm:text-[10px] font-bold text-whats-teal700 shadow-md">
+        📅 Agendado
+      </div>
+      <div class="absolute right-1.5 bottom-8 z-20 rotate-6 rounded-xl bg-white px-2 py-1 text-[8px] sm:text-[10px] font-bold text-whats-teal700 shadow-md">
+        🤖 Atende 24h
+      </div>
+
+      <!-- personagem feliz -->
+      <svg viewBox="0 0 200 230" class="relative z-10 mx-auto mt-6 h-44 w-full sm:h-60" role="img" aria-label="Dono de negócio feliz e relaxado, fechando vendas com o agente de IA">
+        <!-- halo -->
+        <circle cx="100" cy="96" r="74" fill="#ffffff" opacity="0.10"/>
+        <!-- ombros / camisa verde -->
+        <path d="M22 230 C22 182 55 162 100 162 C145 162 178 182 178 230 Z" fill="#1FB855"/>
+        <path d="M22 230 C22 182 55 162 100 162 L100 230 Z" fill="#17a04a" opacity="0.4"/>
+        <!-- pescoço -->
+        <rect x="86" y="128" width="28" height="40" rx="10" fill="#e3a875"/>
+        <!-- cabeça -->
+        <circle cx="100" cy="98" r="46" fill="#eeba8c"/>
+        <!-- orelhas -->
+        <circle cx="56" cy="100" r="9" fill="#e3a875"/>
+        <circle cx="144" cy="100" r="9" fill="#e3a875"/>
+        <!-- cabelo arrumado -->
+        <path d="M54 96 C50 54 78 42 100 42 C124 42 152 56 146 96 C140 74 100 70 100 70 C100 70 64 74 54 96 Z" fill="#4a3526"/>
+        <!-- sobrancelhas relaxadas -->
+        <path d="M72 84 C78 80 86 80 90 83" stroke="#4a3526" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <path d="M110 83 C114 80 122 80 128 84" stroke="#4a3526" stroke-width="5" fill="none" stroke-linecap="round"/>
+        <!-- olhos felizes (arcos) -->
+        <path d="M74 104 C79 98 87 98 90 104" stroke="#2b2b2b" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <path d="M110 104 C113 98 121 98 126 104" stroke="#2b2b2b" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+        <!-- bochechas -->
+        <circle cx="74" cy="118" r="6" fill="#f2a4a4" opacity="0.55"/>
+        <circle cx="126" cy="118" r="6" fill="#f2a4a4" opacity="0.55"/>
+        <!-- sorriso grande -->
+        <path d="M80 118 C90 134 110 134 120 118 C112 130 88 130 80 118 Z" fill="#7a3b2e"/>
+        <path d="M82 120 C90 124 110 124 118 120" stroke="#ffffff" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- braço com joinha (thumbs up) -->
+        <g transform="translate(150 150) rotate(12)">
+          <rect x="-12" y="0" width="24" height="48" rx="12" fill="#1FB855"/>
+          <circle cx="0" cy="-4" r="16" fill="#eeba8c"/>
+          <rect x="-9" y="-16" width="8" height="16" rx="4" fill="#eeba8c"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- divisor central com seta -->
+  <div class="pointer-events-none absolute left-1/2 top-1/2 z-30 -translate-x-1/2 -translate-y-1/2">
+    <div class="flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-xl ring-4 ring-whats-green/20 sm:h-14 sm:w-14">
+      <svg class="h-5 w-5 text-whats-green sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    </div>
+  </div>
+</div>

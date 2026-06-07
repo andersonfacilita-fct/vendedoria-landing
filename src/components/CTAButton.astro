@@ -1,0 +1,42 @@
+---
+export interface Props {
+  label?: string;
+  sub?: string;
+  size?: 'lg' | 'xl';
+  fullWidth?: boolean;
+  className?: string;
+}
+
+const {
+  label = 'QUERO MEU VENDEDOR IA · R$ 67',
+  sub = '',
+  size = 'xl',
+  fullWidth = true,
+  className = '',
+} = Astro.props;
+
+// 🔧 PLACEHOLDER — trocar pelo link real do checkout (Hotmart/Kiwify) quando o produto existir.
+const CHECKOUT_URL = 'https://pay.hotmart.com/SEU_PRODUTO?checkoutMode=2';
+
+const sizeClasses = {
+  lg: 'px-6 py-4 text-base sm:text-lg',
+  xl: 'px-6 py-5 sm:px-10 sm:py-6 text-lg sm:text-xl',
+};
+---
+
+<div class={`flex flex-col items-center gap-2 ${fullWidth ? 'w-full' : ''} ${className}`}>
+  <a
+    href={CHECKOUT_URL}
+    data-cta="checkout"
+    class={`group inline-flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-br from-whats-green to-whats-green700 font-extrabold font-display uppercase tracking-wide text-white btn-glow-green transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${sizeClasses[size]} ${fullWidth ? 'w-full' : ''}`}
+  >
+    <svg class="h-6 w-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 2a8 8 0 11-4.2 14.8l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 0112 4zm-3.4 4.3c-.2 0-.5 0-.7.3-.3.3-1 .9-1 2.2s1 2.6 1.2 2.8c.1.2 2 3.1 4.9 4.3 2.4 1 2.9.8 3.4.8.5-.1 1.6-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.4-.3-.1-1.6-.8-1.9-.9-.2-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.1-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4z"/>
+    </svg>
+    <span class="text-center leading-tight">{label}</span>
+    <svg class="h-5 w-5 flex-shrink-0 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    </svg>
+  </a>
+  {sub && <p class="text-center text-xs sm:text-sm opacity-80">{sub}</p>}
+</div>
