@@ -3,7 +3,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://vendedoria.facilitadistribuidora.com',
+  site: 'https://whatsappvendedoriasemcomplicacao.cloud',
   integrations: [tailwind()],
   output: 'static',
   compressHTML: true,
