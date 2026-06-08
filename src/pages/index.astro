@@ -178,9 +178,9 @@ const ANCORA = 'R$ 225';
             { i: 'chat', t: 'Responder na hora, 24h', d: 'Cada cliente atendido em segundos, a qualquer hora — ninguém fica no vácuo.' },
             { i: 'help', t: 'Tirar as dúvidas de sempre', d: 'Preço, prazo, pagamento, horário… ela responde igual você responderia.' },
             { i: 'calendar', t: 'Agendar e confirmar sozinho', d: 'Marca, confirma e manda lembrete 24h antes — derruba as faltas.' },
-            { i: 'flame', t: 'Nunca mais perder mensagem', d: 'Aquele cliente de madrugada é respondido na hora — e não some pro concorrente.' },
+            { i: 'bell', t: 'Nunca mais perder mensagem', d: 'Aquele cliente de madrugada é respondido na hora — e não some pro concorrente.' },
             { i: 'store', t: 'Parecer (e virar) uma operação maior', d: 'Atendimento rápido e profissional, no seu tom, o tempo todo.' },
-            { i: 'spark', t: 'Sair de dentro do WhatsApp', d: 'A IA atende; ela só te chama quando o cliente está quente pra fechar.' },
+            { i: 'smile', t: 'Sair de dentro do WhatsApp', d: 'A IA atende; ela só te chama quando o cliente está quente pra fechar.' },
           ].map((c) => (
             <div class="flex items-start gap-4 rounded-2xl bg-whats-chatBg p-5">
               <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-white text-whats-teal700 shadow-sm"><Icon name={c.i} class="h-6 w-6" /></div>
@@ -289,9 +289,9 @@ const ANCORA = 'R$ 225';
         <div class="relative mt-6 rounded-3xl border-4 border-whats-green bg-gradient-to-br from-white to-whats-green/5 p-7 shadow-2xl sm:p-9">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-whats-green px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-whats-teal900 shadow-lg">Acesso imediato</div>
           <div class="mb-6 mt-2 text-center">
-            <div class="text-sm text-whats-inkSoft">De <span class="line-through">{ANCORA}</span> por apenas</div>
-            <div class="font-display text-5xl font-extrabold text-whats-teal900 sm:text-6xl">{PRECO}</div>
-            <div class="text-sm text-whats-inkSoft">à vista ou parcelado no cartão</div>
+            <div class="text-sm text-whats-inkSoft">De <span class="line-through">{ANCORA}</span> por:</div>
+            <div class="font-display text-4xl font-extrabold text-whats-teal900 sm:text-5xl">8x de R$ 8,80</div>
+            <div class="mt-1 text-base font-bold text-whats-inkSoft">ou {PRECO} à vista</div>
           </div>
           <CTAButton label="QUERO MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Acesso imediato · Sem mensalidade" />
           <div class="mt-5 flex items-center justify-center gap-2 text-center text-xs font-semibold text-stress-600"><Icon name="flame" class="h-4 w-4" />Preço de lançamento — sobe assim que a turma encher</div>
@@ -356,7 +356,7 @@ const ANCORA = 'R$ 225';
       <div class="mx-auto max-w-2xl px-5 text-center">
         <h2 class="font-display text-3xl font-extrabold leading-tight sm:text-5xl">Pare de perder venda. <span class="text-whats-green">Ligue seu vendedor agora.</span></h2>
         <p class="mx-auto mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-          Em 15 minutos seu WhatsApp começa a atender, tirar dúvidas e agendar sozinho — 24h por dia. De <span class="line-through">{ANCORA}</span> por <strong class="text-whats-green">{PRECO}</strong>. Acesso imediato, 100% online.
+          Em 15 minutos seu WhatsApp começa a atender, tirar dúvidas e agendar sozinho — 24h por dia. De <span class="line-through">{ANCORA}</span> por <strong class="text-whats-green">8x de R$ 8,80</strong> (ou {PRECO} à vista). Acesso imediato, 100% online.
         </p>
         <div class="mx-auto mt-9 max-w-md"><CTAButton label="ATIVAR MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Acesso imediato · Sem mensalidade" /></div>
         <p class="mx-auto mt-8 max-w-xl rounded-2xl bg-white/5 p-4 text-sm text-white/70 ring-1 ring-white/10">
