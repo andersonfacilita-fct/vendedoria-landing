@@ -43,11 +43,10 @@ const ANCORA = 'R$ 225';
         <p class="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-white/90 sm:text-xl">
           <strong class="text-white">Seu WhatsApp vendendo sozinho</strong> — mesmo quando você dorme, almoça ou está atendendo outro cliente. A <strong class="text-white">IA oficial do próprio WhatsApp</strong> responde na hora, tira as dúvidas e agenda sozinha <strong class="text-white">24h por dia</strong>, e só te chama quando o cliente está pronto pra fechar. Você ativa em <strong class="text-whats-green">15 minutos</strong>, mesmo sem entender nada de tecnologia.
         </p>
-        <div class="mt-5 flex flex-col items-center gap-1.5">
-          <div class="flex text-whats-green">
-            <Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" /><Icon name="star" class="h-5 w-5" />
-          </div>
-          <span class="text-xs text-white/70 sm:text-sm">Satisfação garantida — ou seu dinheiro de volta em 7 dias</span>
+        <div class="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-white/75 sm:text-sm">
+          <span class="inline-flex items-center gap-1.5"><Icon name="verified" class="h-4 w-4 text-whats-green" />IA oficial da Meta</span>
+          <span class="inline-flex items-center gap-1.5"><Icon name="bolt" class="h-4 w-4 text-whats-green" />Ativa em 15 minutos</span>
+          <span class="inline-flex items-center gap-1.5"><Icon name="wallet" class="h-4 w-4 text-whats-green" />Sem mensalidade</span>
         </div>
         <div class="mx-auto mt-8 max-w-3xl">
           <picture>
@@ -294,15 +293,8 @@ const ANCORA = 'R$ 225';
             <div class="font-display text-5xl font-extrabold text-whats-teal900 sm:text-6xl">{PRECO}</div>
             <div class="text-sm text-whats-inkSoft">à vista ou parcelado no cartão</div>
           </div>
-          <CTAButton label="QUERO MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Garantia de 7 dias · Sem mensalidade" />
+          <CTAButton label="QUERO MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Acesso imediato · Sem mensalidade" />
           <div class="mt-5 flex items-center justify-center gap-2 text-center text-xs font-semibold text-stress-600"><Icon name="flame" class="h-4 w-4" />Preço de lançamento — sobe assim que a turma encher</div>
-        </div>
-        <div class="mt-8 flex flex-col items-center gap-4 rounded-3xl bg-whats-green/10 p-6 text-center sm:flex-row sm:text-left">
-          <div class="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-whats-green/15 text-whats-teal700"><Icon name="shield" class="h-7 w-7" /></div>
-          <div>
-            <div class="font-display text-lg font-extrabold text-whats-teal900">Garantia incondicional de 7 dias</div>
-            <p class="mt-1 text-sm text-whats-ink/80">Ative, teste e veja seu WhatsApp atendendo. Se não for pra você, devolvemos 100% do valor. O risco é todo nosso.</p>
-          </div>
         </div>
       </div>
     </section>
@@ -364,11 +356,11 @@ const ANCORA = 'R$ 225';
       <div class="mx-auto max-w-2xl px-5 text-center">
         <h2 class="font-display text-3xl font-extrabold leading-tight sm:text-5xl">Pare de perder venda. <span class="text-whats-green">Ligue seu vendedor agora.</span></h2>
         <p class="mx-auto mt-5 max-w-xl text-base text-white/85 sm:text-lg">
-          Em 15 minutos seu WhatsApp começa a atender, tirar dúvidas e agendar sozinho — 24h por dia. De <span class="line-through">{ANCORA}</span> por <strong class="text-whats-green">{PRECO}</strong>. Acesso imediato, garantia de 7 dias.
+          Em 15 minutos seu WhatsApp começa a atender, tirar dúvidas e agendar sozinho — 24h por dia. De <span class="line-through">{ANCORA}</span> por <strong class="text-whats-green">{PRECO}</strong>. Acesso imediato, 100% online.
         </p>
-        <div class="mx-auto mt-9 max-w-md"><CTAButton label="ATIVAR MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Garantia de 7 dias · Sem mensalidade" /></div>
+        <div class="mx-auto mt-9 max-w-md"><CTAButton label="ATIVAR MEU VENDEDOR IA · R$ 67" sub="Pagamento seguro · Acesso imediato · Sem mensalidade" /></div>
         <p class="mx-auto mt-8 max-w-xl rounded-2xl bg-white/5 p-4 text-sm text-white/70 ring-1 ring-white/10">
-          <strong class="text-white">P.S.</strong> Cada dia sem o agente é mais um dia de mensagem sem resposta e venda indo pro concorrente. Por {PRECO}, você liga hoje e ainda tem 7 dias pra testar sem risco.
+          <strong class="text-white">P.S.</strong> Cada dia sem o agente é mais um dia de mensagem sem resposta e venda indo pro concorrente. Por {PRECO}, você liga hoje e seu WhatsApp já começa a vender por você.
         </p>
       </div>
     </section>
@@ -385,7 +377,6 @@ const ANCORA = 'R$ 225';
             { q: 'O pagamento é seguro?', a: 'Sim. O checkout é processado pela Hotmart, com ambiente seguro e os principais meios de pagamento (cartão e Pix).' },
             { q: 'Preciso entender de tecnologia?', a: 'Não. Se você sabe mandar um áudio no WhatsApp, você consegue. É passo a passo, em português claro, sem termo técnico.' },
             { q: 'Funciona pro meu tipo de negócio?', a: 'Sim. Loja, clínica, prestador de serviço, autônomo — qualquer um que atende e vende pelo WhatsApp.' },
-            { q: 'Tem garantia?', a: 'Tem. Garantia incondicional de 7 dias: não gostou, devolvemos 100% do valor — sem perguntas.' },
             { q: 'Tem risco de banimento?', a: 'Não. É a IA oficial do próprio WhatsApp, lançada pela Meta, dentro do app. Nada de gambiarra ou chatbot externo.' },
           ].map((f) => (
             <details class="group rounded-2xl border border-whats-green/15 bg-white p-5 [&_summary::-webkit-details-marker]:hidden">
