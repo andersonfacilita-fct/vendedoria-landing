@@ -6,6 +6,7 @@ import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
 import PhoneNotificacoes from '../components/PhoneNotificacoes.astro';
+import PhoneConversaIA from '../components/PhoneConversaIA.astro';
 
 const PRECO = 'R$ 67';
 const ANCORA = 'R$ 225';
@@ -123,22 +124,7 @@ const ANCORA = 'R$ 225';
             ))}
           </div>
         </div>
-        <div class="relative mx-auto w-full max-w-[280px]">
-          <div class="rounded-[34px] bg-whats-teal900 p-2.5 shadow-2xl">
-            <div class="overflow-hidden rounded-[26px] chat-bg">
-              <div class="gradient-whats flex items-center gap-2.5 px-4 py-3 text-white">
-                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-white/15"><Icon name="chat" class="h-5 w-5" /></div>
-                <div><div class="text-sm font-bold leading-tight">Seu Vendedor IA</div><div class="text-[11px] text-whats-green">online agora</div></div>
-              </div>
-              <div class="space-y-2 px-3 py-4">
-                <div class="bubble-in ml-auto max-w-[80%] text-whats-ink">Oi, vocês ainda têm o produto X? Qual o valor?</div>
-                <div class="bubble-out mr-auto max-w-[80%] text-whats-ink">Temos sim! O valor é R$ X. Quer que eu já reserve e agende a retirada?</div>
-                <div class="bubble-in ml-auto max-w-[80%] text-whats-ink">Pode ser amanhã de manhã?</div>
-                <div class="bubble-out mr-auto max-w-[80%] text-whats-ink">Agendado pra amanhã 9h. Vou te confirmar e passo pro responsável fechar com você.</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <PhoneConversaIA />
       </div>
     </section>
 

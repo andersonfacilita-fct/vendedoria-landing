@@ -1,0 +1,341 @@
+---
+// Animação do Bloco 4 (A virada / solução): espelho positivo do PhoneNotificacoes.
+// Mesmo aparelho, mas agora a IA RESPONDE na hora, conduz a conversa e FECHA a venda
+// — 23h47 da noite (amarra com "mesmo quando você dorme"). Indicador "digitando…",
+// chip de velocidade e selo verde "Venda fechada". CSS + JS puro, sem dependências.
+
+// side: 'in' = cliente (esquerda, branco) | 'ia' = Vendedor IA (direita, verde)
+const turns = [
+  { side: 'in', text: 'Oi! Vi o anúncio agora 👀 ainda dá pra comprar?', time: '23:47', wait: 1000 },
+  { side: 'ia', text: 'Oi! 😊 Dá sim, tenho pronta entrega. Quer que eu já garanta o seu?', time: '23:47', chip: '⚡ respondeu em 7s', wait: 1600 },
+  { side: 'in', text: 'Quero! Qual o valor e como pago?', time: '23:48', wait: 950 },
+  { side: 'ia', text: 'R$ 297 no Pix (10% off) ou em 12x no cartão. Posso já reservar? 👍', time: '23:48', wait: 1500 },
+  { side: 'in', text: 'Fecha no Pix 🙌', time: '23:49', wait: 900 },
+  { side: 'ia', text: 'Reservado ✅ Te mando o Pix e já passo seu contato pro responsável finalizar. Combinado?', time: '23:49', wait: 1400 },
+];
+---
+
+<div class="cv-wrap" id="cv-root">
+  <div class="cv-glow" aria-hidden="true"></div>
+
+  <div class="cv-phone" role="img"
+       aria-label="Conversa no WhatsApp em que a IA responde o cliente na hora, tira as dúvidas e fecha a venda — de madrugada, sozinha.">
+    <span class="cv-notch" aria-hidden="true"></span>
+
+    <div class="cv-screen">
+      <header class="cv-head">
+        <span class="cv-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2z"/></svg>
+        </span>
+        <div class="cv-id">
+          <span class="cv-name">Seu Vendedor IA</span>
+          <span class="cv-sub" id="cv-sub">online agora · responde 24h</span>
+        </div>
+        <span class="cv-meta" aria-hidden="true">23:49</span>
+      </header>
+
+      <div class="cv-body" id="cv-body">
+        {turns.map((t) => (
+          t.side === 'in' ? (
+            <div class="cv-msg cv-in cv-hidden" data-step data-wait={t.wait}>
+              {t.text}<time>{t.time}</time>
+            </div>
+          ) : (
+            <>
+              <div class="cv-typing cv-hidden" data-step data-typing>
+                <span></span><span></span><span></span>
+              </div>
+              <div class={`cv-msg cv-out cv-hidden${t.chip ? ' cv-has-chip' : ''}`} data-step data-wait={t.wait}>
+                {t.text}<time>{t.time} <span class="cv-ticks">✓✓</span></time>
+                {t.chip && <span class="cv-chip">{t.chip}</span>}
+              </div>
+            </>
+          )
+        ))}
+
+        <div class="cv-seal cv-hidden" data-step data-wait="3000" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          Venda fechada — enquanto você dormia
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="cv-caption">
+    <span class="cv-caption-dot" aria-hidden="true"></span>
+    A IA responde na hora, conduz a conversa e <strong>fecha sozinha — 24h por dia.</strong>
+  </p>
+</div>
+
+<style>
+  .cv-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .cv-glow {
+    position: absolute;
+    inset: -6% -12% 10% -12%;
+    background:
+      radial-gradient(60% 55% at 50% 18%, rgba(37, 211, 102, 0.4), transparent 70%),
+      radial-gradient(55% 45% at 50% 88%, rgba(0, 168, 132, 0.3), transparent 72%);
+    filter: blur(16px);
+    z-index: 0;
+  }
+
+  /* aparelho — mesma linguagem do PhoneNotificacoes */
+  .cv-phone {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 300 / 600;
+    border-radius: 38px;
+    padding: 10px;
+    background: linear-gradient(160deg, #0d1b18 0%, #04100d 100%);
+    box-shadow:
+      0 2px 0 1px rgba(255, 255, 255, 0.06) inset,
+      0 40px 70px -28px rgba(0, 0, 0, 0.55),
+      0 18px 30px -20px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+  .cv-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38%;
+    height: 22px;
+    background: #04100d;
+    border-radius: 0 0 16px 16px;
+    z-index: 6;
+  }
+
+  .cv-screen {
+    position: absolute;
+    inset: 10px;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background-color: #efeae2;
+    background-image: radial-gradient(rgba(7, 94, 84, 0.06) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .cv-head {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 30px 13px 11px;
+    background: linear-gradient(135deg, #075e54, #128c7e);
+    color: #fff;
+    z-index: 2;
+  }
+  .cv-avatar {
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .cv-id { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; flex: 1; }
+  .cv-name { font-size: 14px; font-weight: 700; }
+  .cv-sub { font-size: 10.5px; color: #b9f5cf; transition: color 0.2s ease; white-space: nowrap; }
+  .cv-sub.is-typing { color: #d9fdd3; font-style: italic; }
+  .cv-meta { font-size: 10px; opacity: 0.7; flex-shrink: 0; }
+
+  /* corpo: ancorado embaixo, conversa cresce pra cima (igual WhatsApp) */
+  .cv-body {
+    flex: 1;
+    padding: 12px 11px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .cv-hidden { display: none !important; }
+
+  .cv-msg {
+    position: relative;
+    max-width: 84%;
+    padding: 7px 11px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.34;
+    color: #0b141a;
+    box-shadow: 0 1px 1px rgba(11, 20, 26, 0.13);
+    opacity: 0;
+    transform: translateY(9px) scale(0.98);
+    transition: opacity 0.34s ease, transform 0.34s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+  }
+  .cv-msg.cv-in { align-self: flex-start; background: #fff; border-top-left-radius: 3px; }
+  .cv-msg.cv-out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 3px; }
+  .cv-msg.cv-show { opacity: 1; transform: none; }
+  .cv-msg.cv-has-chip { margin-bottom: 15px; }
+  .cv-msg time {
+    position: absolute;
+    right: 9px; bottom: 4px;
+    font-size: 9px;
+    color: #667781;
+  }
+  .cv-ticks { color: #34b7f1; letter-spacing: -1px; }
+
+  /* chip de velocidade (abaixo da 1ª resposta) */
+  .cv-chip {
+    position: absolute;
+    right: 0; bottom: -19px;
+    display: inline-flex; align-items: center;
+    font-size: 9.5px; font-weight: 700;
+    color: #1aa34a;
+    background: rgba(37, 211, 102, 0.14);
+    border: 1px solid rgba(37, 211, 102, 0.35);
+    padding: 1px 7px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* indicador "digitando…" lado da IA */
+  .cv-typing {
+    align-self: flex-end;
+    display: inline-flex;
+    gap: 4px;
+    padding: 9px 12px;
+    background: #d9fdd3;
+    border-radius: 12px;
+    border-top-right-radius: 3px;
+    box-shadow: 0 1px 1px rgba(11, 20, 26, 0.13);
+  }
+  .cv-typing span {
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: #128c7e;
+    opacity: 0.45;
+    animation: cvDot 1.2s infinite ease-in-out;
+  }
+  .cv-typing span:nth-child(2) { animation-delay: 0.18s; }
+  .cv-typing span:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes cvDot {
+    0%, 60%, 100% { opacity: 0.35; transform: translateY(0); }
+    30% { opacity: 1; transform: translateY(-3px); }
+  }
+
+  /* selo verde de fechamento */
+  .cv-seal {
+    align-self: center;
+    margin-top: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #1fb855;
+    color: #fff;
+    font-size: 11.5px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    box-shadow: 0 10px 22px -8px rgba(31, 184, 85, 0.65);
+    opacity: 0;
+    transform: scale(0.82);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.5);
+  }
+  .cv-seal.cv-show { opacity: 1; transform: none; }
+
+  .cv-caption {
+    position: relative;
+    z-index: 1;
+    margin-top: 16px;
+    max-width: 270px;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: #0b3b30;
+  }
+  .cv-caption strong { color: #128c7e; }
+  .cv-caption-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: #25d366;
+    margin-right: 5px;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+    animation: cvPing 1.8s ease-out infinite;
+  }
+  @keyframes cvPing {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+    70%, 100% { box-shadow: 0 0 0 7px rgba(37, 211, 102, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cv-hidden { display: revert !important; }
+    .cv-typing { display: none !important; }
+    .cv-msg, .cv-seal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+
+<script>
+  const root = document.getElementById('cv-root');
+  if (root) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sub = root.querySelector<HTMLElement>('#cv-sub')!;
+    const steps = Array.from(root.querySelectorAll<HTMLElement>('[data-step]'));
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    let cancelled = false;
+    let started = false;
+
+    const showOn = (el: HTMLElement) => el.classList.add('cv-show');
+    function reveal(el: HTMLElement) {
+      el.classList.remove('cv-hidden');
+      void el.offsetWidth; // reflow → dispara a transição
+      showOn(el);
+    }
+
+    function reset() {
+      steps.forEach((s) => { s.classList.add('cv-hidden'); s.classList.remove('cv-show'); });
+      sub.textContent = 'online agora · responde 24h';
+      sub.classList.remove('is-typing');
+    }
+
+    async function cycle() {
+      if (cancelled) return;
+      reset();
+      await sleep(700);
+
+      for (const node of steps) {
+        if (cancelled) return;
+        if (node.dataset.typing !== undefined) {
+          sub.textContent = 'digitando…';
+          sub.classList.add('is-typing');
+          reveal(node);
+          await sleep(1100);
+          node.classList.add('cv-hidden');
+          sub.textContent = 'online agora · responde 24h';
+          sub.classList.remove('is-typing');
+        } else {
+          reveal(node);
+          await sleep(Number(node.dataset.wait) || 1000);
+        }
+      }
+      if (!cancelled) cycle();
+    }
+
+    function start() {
+      if (started) return;
+      started = true; cancelled = false;
+      if (reduce) { steps.forEach((s) => s.dataset.typing === undefined && s.classList.add('cv-show')); return; }
+      cycle();
+    }
+    function stop() { started = false; cancelled = true; }
+
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.isIntersecting ? start() : stop())),
+      { threshold: 0.35 }
+    );
+    io.observe(root);
+  }
+</script>
