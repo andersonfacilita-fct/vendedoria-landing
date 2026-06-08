@@ -1,6 +1,6 @@
 ---
 // Estrutura "Página de Vendas 3x" (método Maxxima) — 14 blocos.
-// Botão de compra nos blocos 9 e 12. Bloco 2 (Depoimentos) omitido: sem prova social real
+// Botão de compra nos blocos 9 e 12. Bloco 2 (Depoimentos) removido: sem prova social real
 // (o método manda remover quando não há prova). Rodapé sem e-mail (regra interna).
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
@@ -61,31 +61,8 @@ const ANCORA = 'R$ 225';
       </div>
     </section>
 
-    <!-- ===================================================================== -->
-    <!-- BLOCO 2 · DEPOIMENTOS — ⚠️ PLACEHOLDER: substituir por reais quando tiver -->
-    <!-- ===================================================================== -->
-    <section class="bg-whats-chatBg py-14 sm:py-20">
-      <div class="mx-auto max-w-4xl px-5">
-        <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">Quem ativou não atende mais como antes</h2>
-        <p class="mx-auto mt-3 max-w-xl text-center text-base text-whats-inkSoft sm:text-lg">Donos de negócio que ligaram o vendedor IA e pararam de perder mensagem.</p>
-        <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
-          {[
-            { q: 'Ativei num sábado de manhã e à tarde já tinha cliente sendo respondido sozinho. Parei de perder mensagem de madrugada.', a: 'Marcos', s: 'loja de autopeças' },
-            { q: 'Achei que ia ser complicado, mas é só seguir o passo a passo. Hoje a agenda enche sem eu ficar grudado no celular.', a: 'Patrícia', s: 'clínica de estética' },
-            { q: 'O melhor é que ela me chama só quando o cliente está pronto pra fechar. Eu foco no que importa.', a: 'Rafael', s: 'prestador de serviço' },
-          ].map((d) => (
-            <figure class="flex h-full flex-col rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-              <div class="mb-3 flex text-whats-green"><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /><Icon name="star" class="h-4 w-4" /></div>
-              <blockquote class="flex-1 text-sm leading-relaxed text-whats-ink">"{d.q}"</blockquote>
-              <figcaption class="mt-4 flex items-center gap-3">
-                <span class="flex h-9 w-9 items-center justify-center rounded-full bg-whats-green/20 text-whats-teal700"><Icon name="user" class="h-5 w-5" /></span>
-                <span class="text-sm"><strong class="text-whats-ink">{d.a}</strong><br /><span class="text-whats-inkSoft">{d.s}</span></span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- BLOCO 2 · DEPOIMENTOS — removido 08/06: prova social real ainda não existe.
+         Método Maxxima manda omitir prova falsa (risco Hotmart/Procon). Recolocar quando houver depoimentos reais. -->
 
     <!-- ===================================================================== -->
     <!-- BLOCO 3 · DOR LATENTE PRINCIPAL (ruminação) — gerar identificação      -->
