@@ -1,0 +1,487 @@
+---
+// Animação do Hero (Bloco 1, método Maxxima): celular recebendo mensagens de
+// clientes quentes que SE ACUMULAM sem resposta → a tela vira a conversa aberta
+// tarde demais, e o cliente diz "já comprei em outro lugar" → selo "Venda perdida".
+// Conta a dor do headline em movimento. CSS + JS puro, sem dependências.
+// IntersectionObserver liga/desliga o loop (perf + bateria). Respeita reduced-motion.
+
+// Lead "quente" = pronto pra comprar. O texto reforça intenção de compra ignorada.
+const leads = [
+  { nome: 'João Mendes',    msg: 'Oi! Ainda dá pra comprar? Quero fechar agora 🙌', t: 'agora' },
+  { nome: 'Marina Souza',   msg: 'Boa tarde! Qual o valor? Posso pagar no pix',     t: 'há 2 min' },
+  { nome: 'Carlos Eduardo', msg: 'Vocês entregam ainda hoje?',                       t: 'há 6 min' },
+  { nome: 'Roberto Lima',   msg: 'Ainda tá disponível?? me chama',                   t: 'há 11 min' },
+];
+---
+
+<div class="pn-wrap" id="pn-root">
+  <!-- brilho atrás do aparelho -->
+  <div class="pn-glow" aria-hidden="true"></div>
+
+  <div class="pn-phone" role="img"
+       aria-label="Celular recebendo várias mensagens de clientes que ficam sem resposta e acabam comprando do concorrente.">
+    <span class="pn-notch" aria-hidden="true"></span>
+
+    <!-- ================= TELA 1 · NOTIFICAÇÕES ACUMULANDO ================= -->
+    <div class="pn-screen pn-lock is-on" data-screen="lock">
+      <div class="pn-statusbar">
+        <span>17:14</span>
+        <span class="pn-statusbar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="13" height="13"><path fill="currentColor" d="M2 22h20V2z" opacity=".85"/></svg>
+          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 4C7 4 3 7 1 11l11 9 11-9c-2-4-6-7-11-7z" opacity=".85"/></svg>
+          <svg viewBox="0 0 26 24" width="18" height="13"><rect x="1" y="6" width="20" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.6" opacity=".85"/><rect x="3" y="8" width="14" height="8" rx="1.5" fill="currentColor"/><rect x="22" y="9.5" width="2.5" height="5" rx="1.2" fill="currentColor" opacity=".85"/></svg>
+        </span>
+      </div>
+
+      <div class="pn-clock">17:14</div>
+      <div class="pn-date">sexta-feira, 6 de junho</div>
+
+      <div class="pn-unread" id="pn-unread">
+        <span class="pn-unread-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2z"/></svg>
+        </span>
+        WhatsApp · <strong><span id="pn-count">0</span> não lidas</strong>
+      </div>
+
+      <div class="pn-stack">
+        {leads.map((l, i) => (
+          <article class="pn-notif" data-i={i}>
+            <span class="pn-notif-app" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm-3.4 6.3c.2 0 .4-.1.6.4.3.5.9 1.8.9 2 .1.1.1.3 0 .5-.1.2-.2.3-.3.5l-.5.5c-.1.2-.2.3-.1.6.2.3.8 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.3.1.4.1.6-.1.1-.1.6-.7.8-1 .2-.2.4-.2.6-.1.3.1 1.6.8 1.9.9.3.2.5.3.6.4 0 .1 0 .6-.2 1.3-.3.6-1.4 1.2-1.9 1.3-.5 0-1 .2-3.4-.8-2.9-1.2-4.8-4.1-4.9-4.3-.2-.2-1.2-1.5-1.2-2.8s.7-1.9 1-2.2c.2-.3.5-.3.7-.3z"/></svg>
+            </span>
+            <div class="pn-notif-body">
+              <div class="pn-notif-top">
+                <span class="pn-notif-name">{l.nome}</span>
+                <span class="pn-notif-time">{l.t}</span>
+              </div>
+              <p class="pn-notif-msg">{l.msg}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- ================= TELA 2 · CONVERSA TARDE DEMAIS ================= -->
+    <div class="pn-screen pn-chat" data-screen="chat" aria-hidden="true">
+      <header class="pn-chat-head">
+        <svg class="pn-chat-back" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        <span class="pn-chat-avatar" aria-hidden="true">JM</span>
+        <div class="pn-chat-id">
+          <span class="pn-chat-name">João Mendes</span>
+          <span class="pn-chat-sub">visto por último hoje 17:14</span>
+        </div>
+      </header>
+
+      <div class="pn-chat-body">
+        <div class="pn-msg pn-msg-in" data-c="1">
+          Oi! Ainda dá pra comprar? Quero fechar agora 🙌
+          <time>14:03</time>
+        </div>
+
+        <div class="pn-gap" data-c="2"><span>3 horas depois…</span></div>
+
+        <div class="pn-msg pn-msg-in pn-msg-lost" data-c="3">
+          Deixa, já comprei em outro lugar.
+          <time>17:09</time>
+        </div>
+
+        <div class="pn-msg pn-msg-out pn-msg-late" data-c="4">
+          Oi! Temos sim 😄 consigo te atender ag…
+          <time>17:14 <span class="pn-ticks">✓✓</span></time>
+        </div>
+      </div>
+
+      <div class="pn-seal" data-c="5" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4"><path stroke-linecap="round" d="M18 6L6 18M6 6l12 12"/></svg>
+        Venda perdida
+      </div>
+    </div>
+  </div>
+
+  <p class="pn-caption">
+    <span class="pn-caption-dot" aria-hidden="true"></span>
+    Sem ninguém pra responder na hora, <strong>cada mensagem vira uma venda perdida.</strong>
+  </p>
+</div>
+
+<style>
+  .pn-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pn-glow {
+    position: absolute;
+    inset: -8% -12% 12% -12%;
+    background:
+      radial-gradient(60% 50% at 50% 12%, rgba(37, 211, 102, 0.35), transparent 70%),
+      radial-gradient(55% 45% at 50% 85%, rgba(239, 68, 68, 0.22), transparent 70%);
+    filter: blur(14px);
+    z-index: 0;
+  }
+
+  /* ---------- aparelho ---------- */
+  .pn-phone {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 300 / 600;
+    border-radius: 38px;
+    padding: 10px;
+    background: linear-gradient(160deg, #0d1b18 0%, #04100d 100%);
+    box-shadow:
+      0 2px 0 1px rgba(255, 255, 255, 0.06) inset,
+      0 40px 70px -28px rgba(0, 0, 0, 0.7),
+      0 18px 30px -20px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+  }
+  .pn-notch {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38%;
+    height: 22px;
+    background: #04100d;
+    border-radius: 0 0 16px 16px;
+    z-index: 6;
+  }
+
+  .pn-screen {
+    position: absolute;
+    inset: 10px;
+    border-radius: 30px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.55s ease;
+    pointer-events: none;
+  }
+  .pn-screen.is-on { opacity: 1; }
+
+  /* ---------- TELA 1: lockscreen ---------- */
+  .pn-lock {
+    background:
+      radial-gradient(120% 80% at 50% 0%, #0e6b5d 0%, #075e54 38%, #042e29 100%);
+    color: #fff;
+    padding: 30px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .pn-statusbar {
+    position: absolute;
+    top: 9px; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .pn-statusbar-ico { display: inline-flex; gap: 4px; align-items: center; }
+  .pn-clock {
+    margin-top: 18px;
+    font-size: 52px;
+    font-weight: 300;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+  .pn-date {
+    font-size: 12px;
+    opacity: 0.78;
+    margin-top: 4px;
+  }
+  .pn-unread {
+    margin-top: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 4px 11px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .pn-unread.is-on { opacity: 1; transform: none; }
+  .pn-unread.pn-bump { animation: pnBump 0.5s ease; }
+  .pn-unread-ico {
+    width: 17px; height: 17px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #25d366;
+    border-radius: 5px;
+  }
+  @keyframes pnBump {
+    40% { transform: scale(1.12); }
+  }
+
+  .pn-stack {
+    margin-top: 12px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pn-notif {
+    display: flex;
+    gap: 9px;
+    align-items: flex-start;
+    background: rgba(255, 255, 255, 0.92);
+    color: #0b141a;
+    border-radius: 16px;
+    padding: 9px 10px;
+    box-shadow: 0 8px 18px -10px rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    transform: translateY(-16px) scale(0.94);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+  }
+  .pn-notif.is-on { opacity: 1; transform: none; }
+  .pn-notif-app {
+    flex-shrink: 0;
+    width: 30px; height: 30px;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #25d366;
+    border-radius: 9px;
+  }
+  .pn-notif-body { flex: 1; min-width: 0; }
+  .pn-notif-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .pn-notif-name { font-size: 12.5px; font-weight: 700; }
+  .pn-notif-time { font-size: 10px; color: #667781; flex-shrink: 0; }
+  .pn-notif-msg {
+    margin: 1px 0 0;
+    font-size: 11.5px;
+    line-height: 1.3;
+    color: #3b4a52;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ---------- TELA 2: conversa tarde demais ---------- */
+  .pn-chat {
+    background-color: #efeae2;
+    background-image: radial-gradient(rgba(7, 94, 84, 0.06) 1px, transparent 1px);
+    background-size: 18px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .pn-chat-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 32px 12px 10px;
+    background: linear-gradient(135deg, #075e54, #128c7e);
+    color: #fff;
+  }
+  .pn-chat-back { flex-shrink: 0; }
+  .pn-chat-avatar {
+    width: 34px; height: 34px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .pn-chat-id { display: flex; flex-direction: column; line-height: 1.2; }
+  .pn-chat-name { font-size: 14px; font-weight: 700; }
+  .pn-chat-sub { font-size: 10.5px; opacity: 0.8; }
+
+  .pn-chat-body {
+    flex: 1;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    overflow: hidden;
+  }
+  .pn-msg {
+    position: relative;
+    max-width: 82%;
+    padding: 7px 10px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    line-height: 1.32;
+    color: #0b141a;
+    box-shadow: 0 1px 1px rgba(11, 20, 26, 0.14);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .pn-msg.is-on { opacity: 1; transform: none; }
+  .pn-msg time {
+    position: absolute;
+    right: 9px;
+    bottom: 4px;
+    font-size: 9px;
+    color: #667781;
+  }
+  .pn-msg-in { align-self: flex-start; background: #fff; border-top-left-radius: 3px; }
+  .pn-msg-out { align-self: flex-end; background: #d9fdd3; border-top-right-radius: 3px; }
+  .pn-msg-lost {
+    background: #fee2e2;
+    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.25), 0 4px 10px -4px rgba(220, 38, 38, 0.4);
+    font-weight: 600;
+  }
+  .pn-msg-late { opacity: 0; }
+  .pn-msg-late.is-on { opacity: 0.65; }
+  .pn-ticks { color: #9aa6ac; letter-spacing: -1px; }
+
+  .pn-gap {
+    align-self: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .pn-gap.is-on { opacity: 1; }
+  .pn-gap span {
+    font-size: 9.5px;
+    color: #5b6b62;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 2px 9px;
+    border-radius: 999px;
+  }
+
+  .pn-seal {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%) scale(0.8);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    box-shadow: 0 12px 24px -8px rgba(220, 38, 38, 0.6);
+    opacity: 0;
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 0.9, 0.3, 1.4);
+  }
+  .pn-seal.is-on { opacity: 1; transform: translateX(-50%) scale(1); }
+
+  /* ---------- legenda ---------- */
+  .pn-caption {
+    position: relative;
+    z-index: 1;
+    margin-top: 16px;
+    max-width: 280px;
+    text-align: center;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .pn-caption strong { color: #fff; }
+  .pn-caption-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: #ef4444;
+    margin-right: 5px;
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6);
+    animation: pnPing 1.8s ease-out infinite;
+  }
+  @keyframes pnPing {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+    70%, 100% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+  }
+
+  /* sem animação: mostra o estado final (dor evidente) estático */
+  @media (prefers-reduced-motion: reduce) {
+    .pn-notif, .pn-unread, .pn-msg, .pn-gap, .pn-seal { opacity: 1 !important; transform: none !important; }
+    .pn-msg-late { opacity: 0.65 !important; }
+    .pn-seal { transform: translateX(-50%) !important; }
+  }
+</style>
+
+<script>
+  const root = document.getElementById('pn-root');
+  if (root) {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const lock = root.querySelector<HTMLElement>('[data-screen="lock"]')!;
+    const chat = root.querySelector<HTMLElement>('[data-screen="chat"]')!;
+    const notifs = Array.from(root.querySelectorAll<HTMLElement>('.pn-notif'));
+    const unread = root.querySelector<HTMLElement>('#pn-unread')!;
+    const count = root.querySelector<HTMLElement>('#pn-count')!;
+    const chatSteps = Array.from(root.querySelectorAll<HTMLElement>('[data-c]'))
+      .sort((a, b) => Number(a.dataset.c) - Number(b.dataset.c));
+
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    let running = false;
+    let cancelled = false;
+
+    function reset() {
+      notifs.forEach((n) => n.classList.remove('is-on'));
+      chatSteps.forEach((s) => s.classList.remove('is-on'));
+      unread.classList.remove('is-on');
+      count.textContent = '0';
+      lock.classList.add('is-on');
+      chat.classList.remove('is-on');
+    }
+
+    async function cycle() {
+      if (cancelled) return;
+      reset();
+      await sleep(700);
+
+      // 1) notificações chegam e SE ACUMULAM
+      unread.classList.add('is-on');
+      for (let i = 0; i < notifs.length; i++) {
+        if (cancelled) return;
+        notifs[i].classList.add('is-on');
+        count.textContent = String(i + 1);
+        unread.classList.remove('pn-bump');
+        void unread.offsetWidth; // reinicia a animação do contador
+        unread.classList.add('pn-bump');
+        await sleep(i < notifs.length - 1 ? 950 : 1700);
+      }
+
+      // 2) deixa o acúmulo "doer" mais um instante e abre a conversa tarde demais
+      if (cancelled) return;
+      lock.classList.remove('is-on');
+      chat.classList.add('is-on');
+      await sleep(650);
+
+      for (const step of chatSteps) {
+        if (cancelled) return;
+        step.classList.add('is-on');
+        await sleep(step.classList.contains('pn-seal') ? 400 : 850);
+      }
+
+      // 3) segura o desfecho e reinicia
+      await sleep(2600);
+      if (!cancelled) cycle();
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      cancelled = false;
+      if (reduce) { reset(); notifs.forEach((n) => n.classList.add('is-on')); unread.classList.add('is-on'); count.textContent = '4'; return; }
+      cycle();
+    }
+    function stop() { running = false; cancelled = true; }
+
+    // só anima quando está visível na tela
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => (e.isIntersecting ? start() : stop())),
+      { threshold: 0.35 }
+    );
+    io.observe(root);
+  }
+</script>

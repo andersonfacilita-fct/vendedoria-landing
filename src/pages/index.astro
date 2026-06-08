@@ -5,6 +5,7 @@
 import Layout from '../layouts/Layout.astro';
 import CTAButton from '../components/CTAButton.astro';
 import Icon from '../components/Icon.astro';
+import PhoneNotificacoes from '../components/PhoneNotificacoes.astro';
 
 const PRECO = 'R$ 67';
 const ANCORA = 'R$ 225';
@@ -48,11 +49,8 @@ const ANCORA = 'R$ 225';
           <span class="inline-flex items-center gap-1.5"><Icon name="bolt" class="h-4 w-4 text-whats-green" />Ativa em 15 minutos</span>
           <span class="inline-flex items-center gap-1.5"><Icon name="wallet" class="h-4 w-4 text-whats-green" />Sem mensalidade</span>
         </div>
-        <div class="mx-auto mt-8 max-w-3xl">
-          <picture>
-            <source srcset="/comparacao.webp" type="image/webp" />
-            <img src="/comparacao.png" width="1400" height="788" alt="Antes: dono de negócio estressado perdendo vendas. Depois: feliz, fechando vendas e agendando com o WhatsApp Vendedor IA." class="w-full rounded-[22px] shadow-2xl ring-1 ring-black/10" fetchpriority="high" />
-          </picture>
+        <div class="mx-auto mt-10">
+          <PhoneNotificacoes />
         </div>
         <div class="mt-8 flex flex-col items-center gap-1 text-white/70">
           <span class="text-xs font-semibold uppercase tracking-widest">Veja como funciona</span>
