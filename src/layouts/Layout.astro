@@ -55,48 +55,66 @@ const PIXEL_ID = '1026788763199928';
 
     <!-- Meta Pixel — WhatsApp Vendedor IA (1026788763199928) -->
     <script is:inline define:vars={{ PIXEL_ID }}>
-      !(function (f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
-        if (!f._fbq) f._fbq = n;
-        n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
-        t = b.createElement(e); t.async = !0; t.src = v;
-        s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      // Modo teste: ?notrack=1 desliga o Meta Pixel pra testar checkout/compra sem sujar.
+      // Fica salvo no navegador (localStorage) até acessar com ?notrack=0. Só afeta ESTE navegador.
+      var NOTRACK = (function () {
+        try {
+          var qs = new URLSearchParams(location.search);
+          if (qs.has('notrack')) {
+            var on = qs.get('notrack') !== '0';
+            on ? localStorage.setItem('wv_notrack', '1') : localStorage.removeItem('wv_notrack');
+            return on;
+          }
+          return localStorage.getItem('wv_notrack') === '1';
+        } catch (e) { return false; }
+      })();
 
-      window.fbq('init', PIXEL_ID);
-      window.fbq('track', 'PageView');
-      // ViewContent imediato — sinal rápido pro algoritmo (Maxxima Fase 1)
-      window.fbq('track', 'ViewContent', {
-        content_name: 'WhatsApp Vendedor IA Sem Complicação',
-        content_ids: ['R106181710S'], content_type: 'product',
-        value: 67.0, currency: 'BRL',
-      });
-      // InitiateCheckout nos botões de compra (com sendBeacon p/ não perder em mobile)
-      function wvEventId() {
-        try { var k = 'wv_ic'; var v = sessionStorage.getItem(k);
-          if (!v) { v = 'ic_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10); sessionStorage.setItem(k, v); }
-          return v; } catch (e) { return 'ic_' + Date.now(); }
-      }
-      window.addEventListener('DOMContentLoaded', function () {
-        document.querySelectorAll('[data-cta="checkout"]').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            var eventID = wvEventId();
-            window.fbq('track', 'InitiateCheckout', {
-              content_name: 'WhatsApp Vendedor IA Sem Complicação',
-              content_ids: ['R106181710S'], content_type: 'product',
-              value: 67.0, currency: 'BRL', num_items: 1,
-            }, { eventID: eventID });
-            try {
-              if (navigator.sendBeacon) {
-                var body = new URLSearchParams({ id: PIXEL_ID, ev: 'InitiateCheckout',
-                  cd: JSON.stringify({ value: 67, currency: 'BRL', content_ids: ['R106181710S'] }), eid: eventID });
-                navigator.sendBeacon('https://www.facebook.com/tr/?' + body.toString());
-              }
-            } catch (e) {}
+      if (NOTRACK) {
+        console.log('%c[Meta Pixel] MODO TESTE — pixel desligado (notrack). Acesse ?notrack=0 pra religar.', 'color:#f60;font-weight:bold');
+      } else {
+        !(function (f, b, e, v, n, t, s) {
+          if (f.fbq) return;
+          n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+          if (!f._fbq) f._fbq = n;
+          n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+          t = b.createElement(e); t.async = !0; t.src = v;
+          s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+        })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        window.fbq('init', PIXEL_ID);
+        window.fbq('track', 'PageView');
+        // ViewContent imediato — sinal rápido pro algoritmo (Maxxima Fase 1)
+        window.fbq('track', 'ViewContent', {
+          content_name: 'WhatsApp Vendedor IA Sem Complicação',
+          content_ids: ['R106181710S'], content_type: 'product',
+          value: 67.0, currency: 'BRL',
+        });
+        // InitiateCheckout nos botões de compra (com sendBeacon p/ não perder em mobile)
+        var wvEventId = function () {
+          try { var k = 'wv_ic'; var v = sessionStorage.getItem(k);
+            if (!v) { v = 'ic_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10); sessionStorage.setItem(k, v); }
+            return v; } catch (e) { return 'ic_' + Date.now(); }
+        };
+        window.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('[data-cta="checkout"]').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var eventID = wvEventId();
+              window.fbq('track', 'InitiateCheckout', {
+                content_name: 'WhatsApp Vendedor IA Sem Complicação',
+                content_ids: ['R106181710S'], content_type: 'product',
+                value: 67.0, currency: 'BRL', num_items: 1,
+              }, { eventID: eventID });
+              try {
+                if (navigator.sendBeacon) {
+                  var body = new URLSearchParams({ id: PIXEL_ID, ev: 'InitiateCheckout',
+                    cd: JSON.stringify({ value: 67, currency: 'BRL', content_ids: ['R106181710S'] }), eid: eventID });
+                  navigator.sendBeacon('https://www.facebook.com/tr/?' + body.toString());
+                }
+              } catch (e) {}
+            });
           });
         });
-      });
+      }
     </script>
     <noscript>
       <img height="1" width="1" style="display:none" src={`https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1`} />
