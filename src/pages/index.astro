@@ -188,9 +188,10 @@ const ANCORA = 'R$ 225';
     <!-- BLOCO 7 · PARA QUEM SERVE — "é pra mim"                                -->
     <!-- ===================================================================== -->
     <section class="bg-white py-14 sm:py-20">
-      <div class="mx-auto max-w-4xl px-5">
+      <div class="mx-auto max-w-5xl px-5">
         <h2 class="text-center font-display text-2xl font-extrabold text-whats-ink sm:text-4xl">Isso é pra você?</h2>
-        <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div class="relative mt-10">
+          <div class="grid grid-cols-1 gap-5 sm:grid-cols-[1fr_11rem_1fr] sm:gap-6 lg:grid-cols-[1fr_14rem_1fr]">
           <div class="rounded-2xl border-2 border-whats-green/30 bg-whats-green/5 p-6">
             <div class="mb-4 flex items-center gap-2 font-display text-lg font-extrabold text-whats-teal900"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-whats-green text-white"><Icon name="check" class="h-4 w-4" /></span>É pra você se…</div>
             <ul class="space-y-2.5 text-whats-ink">
@@ -199,6 +200,7 @@ const ANCORA = 'R$ 225';
               ))}
             </ul>
           </div>
+          <div class="hidden sm:block" aria-hidden="true"></div>
           <div class="rounded-2xl border-2 border-stress-300/50 bg-stress-50 p-6">
             <div class="mb-4 flex items-center gap-2 font-display text-lg font-extrabold text-stress-700"><span class="flex h-7 w-7 items-center justify-center rounded-full bg-stress-500 text-white"><Icon name="x" class="h-4 w-4" /></span>Não é pra você se…</div>
             <ul class="space-y-2.5 text-stress-900/80">
@@ -207,6 +209,11 @@ const ANCORA = 'R$ 225';
               ))}
             </ul>
           </div>
+          </div>
+          <picture>
+            <source srcset="/homem-pensando.webp" type="image/webp" />
+            <img src="/homem-pensando.png" alt="Homem pensativo, em dúvida se o produto é pra ele" width="499" height="970" class="pointer-events-none absolute bottom-0 left-1/2 hidden w-44 -translate-x-1/2 select-none sm:block lg:w-56" />
+          </picture>
         </div>
       </div>
     </section>
