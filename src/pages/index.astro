@@ -23,6 +23,10 @@ const ANCORA = 'R$ 225';
           <source srcset="/hero-ia.webp" type="image/webp" />
           <img src="/hero-ia.jpg" width="1536" height="1024" fetchpriority="high" class="mx-auto block w-full max-w-[1600px]" alt="IA oficial do WhatsApp: seu WhatsApp atendendo clientes mesmo quando você não pode responder. Ativa em 15 minutos, sem mensalidade, passo a passo para iniciantes, acesso imediato. Ideal para lojas, clínicas, salões e prestadores de serviço." />
         </picture>
+        <!-- CTA de compra no hero desktop (bloco 1) -->
+        <div class="mx-auto max-w-md px-5 pb-14 pt-3">
+          <CTAButton size="xl" />
+        </div>
       </div>
 
       <!-- Mobile/tablet (até lg): versão VERTICAL da arte do hero (empilhada e legível no celular) -->
@@ -113,7 +117,12 @@ const ANCORA = 'R$ 225';
             </p>
           </div>
 
-          <div class="mt-8 flex flex-col items-center gap-1 text-white/70">
+          <!-- CTA de compra no hero mobile (bloco 1) -->
+          <div class="mx-auto mt-7 max-w-sm">
+            <CTAButton size="xl" />
+          </div>
+
+          <div class="mt-7 flex flex-col items-center gap-1 text-white/70">
             <span class="text-xs font-semibold uppercase tracking-widest">Veja como funciona</span>
             <svg class="h-6 w-6 animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </div>
