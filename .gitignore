@@ -20,3 +20,7 @@ yarn-error.log*
 # editor
 .vscode/
 .idea/
+
+# .env.local e variantes também (auditoria 07/10/2026)
+.env.*
+!.env.example
